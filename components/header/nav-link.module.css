@@ -1,0 +1,17 @@
+.link{
+    display: inline-block;
+    max-width: 100%;
+    color: #223248;
+    text-decoration: none;
+    text-align: center;
+    font-size: clamp(0.9rem, 0.6vw + 0.75rem, 1.25rem);
+    letter-spacing: clamp(0rem, 0.06vw, 0.08rem);
+}
+
+ .link:active{
+     border-bottom: 2px solid #223248;;
+}
+
+.active{
+    border-bottom: 2px solid #223248;
+}

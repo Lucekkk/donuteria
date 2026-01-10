@@ -1,4 +1,4 @@
-import Counter from "@/components/Counter";
+// import Counter from "@/components/Counter";
 import {getThreeProducts} from "@/app/api/threeProducts/route";
 import Image from "next/image";
 import classes from "./page.module.css";
@@ -7,8 +7,9 @@ export default async function Home() {
   const products = await getThreeProducts();
 
   return( 
-      // <Counter />
+        
     <>
+      {/* <Counter /> */}
       <div>
           {products.map(product => (
             <div key={product.id}>

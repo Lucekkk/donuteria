@@ -1,0 +1,33 @@
+.header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    /* justify-content:space-between; */
+    color: #223248;
+   
+
+}
+.header h1{
+    text-align: center;
+    flex-basis: 30%;
+     font-size: clamp(.8rem , 1rem + 1.35vw, 2rem + 2vw);
+     padding: 30px 0;
+}
+.nav{
+    flex-basis: 70%;
+
+    display: flex;
+    justify-content: flex-end;
+}
+.nav ul{
+    width: 75%;
+    list-style-type: none;
+
+    display: flex;
+    justify-content: space-around;
+}
+.nav ul li{
+     text-align: center;
+    width: 100%;
+    
+}
