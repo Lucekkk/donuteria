@@ -1,6 +1,7 @@
 import StoreProvider from "@/store/StoreProvider";
 import "./globals.css";
 import HeaderMain from "@/components/header/header-main";
+import Footer from "@/components/footer/footer";
 
 
 export const metadata = {
@@ -15,6 +16,7 @@ export default function RootLayout({ children }) {
         <StoreProvider>
           <HeaderMain/>
           {children}
+          <Footer/>
         </StoreProvider>
       </body>
     </html>

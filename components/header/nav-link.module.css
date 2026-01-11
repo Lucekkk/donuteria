@@ -1,6 +1,7 @@
 .link{
     display: inline-block;
     max-width: 100%;
+    line-height: 1.7;
     height: 100%;
     color: #223248;
     text-decoration: none;
