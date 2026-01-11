@@ -20,14 +20,25 @@
     justify-content: flex-end;
 }
 .nav ul{
-    width: 75%;
+    width:80%;
     list-style-type: none;
 
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
+@media(max-width:1500px){
+    .nav{
+        justify-content: space-around;
+    }
+    .nav ul{
+        width: 100%;
+    }
+}
+ 
 .nav ul li{
      text-align: center;
     width: 100%;
+     
     
 }
