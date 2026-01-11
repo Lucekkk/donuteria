@@ -7,6 +7,7 @@ import Link from "next/link";
 
 export default function ThreeProducts({products}){
      const [active, setActive] = useState(0);
+     const [backgroundColor, setBackgroundColor] = useState('#EA7BBE')
      const [description, setDescription] = useState(
     products.map((product, index) => (
       <p
@@ -21,6 +22,8 @@ export default function ThreeProducts({products}){
       </p>
     ))
   );
+
+
 
   const donutHandler = (newIndex) => {
     setActive(newIndex);
@@ -39,6 +42,13 @@ export default function ThreeProducts({products}){
         </p>
       ))
     );
+    if(newIndex === 0){
+      setBackgroundColor('#EA7BBE');
+    }else if(newIndex === 1){
+      setBackgroundColor('#4ABAF0');
+    }else{
+      setBackgroundColor('#974F2D')
+    }
   };
     return(
          
@@ -61,8 +71,8 @@ export default function ThreeProducts({products}){
              </div>
 
              <div className={classes.links}>
-                <Link href='/'>Zamów teraz</Link>
-                <Link href='/'>Więcej</Link>
+                <Link href='/' style={{backgroundColor: `${backgroundColor}`}}>Zamów teraz</Link>
+                <Link href='/' style={{backgroundColor: `${backgroundColor}`}}>Więcej</Link>
              </div>
 
             <div className={classes.donutsBtnsContainer}>
