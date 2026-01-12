@@ -1,12 +1,16 @@
 "use client";
 import Image from "next/image";
 import classes from "./three-products.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 export default function ThreeProducts({ products }) {
   const [active, setActive] = useState(0);
-  const [backgroundColor, setBackgroundColor] = useState("#EA7BBE");
+  const [prevActive, setPrevActive] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [linkBackgroundColor, setLinkBackgroundColor] = useState("#EA7BBE");
+  const [bg1, setBg1] = useState("rgba(240, 77, 104, 0.55)");
+  const [bg2, setBg2] = useState("rgba(255, 255, 255, 1)");
   const [description, setDescription] = useState(
     products.map((product, index) => (
       <p
@@ -38,6 +42,9 @@ export default function ThreeProducts({ products }) {
   );
 
   const donutHandler = (newIndex) => {
+    if (isAnimating) return; // Zablokuj klikanie podczas animacji
+
+    setIsAnimating(true);
     setActive(newIndex);
 
     setDescription(
@@ -55,11 +62,17 @@ export default function ThreeProducts({ products }) {
       ))
     );
     if (newIndex === 0) {
-      setBackgroundColor("#EA7BBE");
+      setLinkBackgroundColor("#EA7BBE");
+      setBg1("rgba(240, 77, 104, 0.55)");
+      setBg2("rgba(255, 255, 255, 1)");
     } else if (newIndex === 1) {
-      setBackgroundColor("#4ABAF0");
+      setLinkBackgroundColor("#4ABAF0");
+      setBg1("rgba(74, 186, 240, 0.8)");
+      setBg2("rgba(255, 255, 255, 1)");
     } else {
-      setBackgroundColor("#974F2D");
+      setLinkBackgroundColor("#974F2D");
+      setBg1("rgba(151, 79, 45, 0.55)");
+      setBg2("rgba(255, 255, 255, 1)");
     }
 
     setDonutBtn(
@@ -72,14 +85,31 @@ export default function ThreeProducts({ products }) {
               ? `${classes.donutsBtn} ${classes.active}`
               : classes.donutsBtn
           }
+          //  disabled={index ===}
         >
           <Image src={prod.obrazek} alt={prod.opis_obrazka} priority fill />
         </button>
       ))
     );
   };
+
+  // Uaktualnij prevActive po tym jak animacja się skończy (1s)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setPrevActive(active);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [active]);
+
   return (
-    <main className={classes.main}>
+    <main
+      className={classes.main}
+      style={{
+        "--bg1": bg1,
+        "--bg2": bg2,
+      }}
+    >
       <div className={classes.leftPanel}>
         <div className={classes.viewport}>
           <div
@@ -100,10 +130,10 @@ export default function ThreeProducts({ products }) {
         <div className={classes.descriptionBox}>{description}</div>
 
         <div className={classes.links}>
-          <Link href="/" style={{ backgroundColor: `${backgroundColor}` }}>
+          <Link href="/" style={{ backgroundColor: `${linkBackgroundColor}` }}>
             Zamów teraz
           </Link>
-          <Link href="/" style={{ backgroundColor: `${backgroundColor}` }}>
+          <Link href="/" style={{ backgroundColor: `${linkBackgroundColor}` }}>
             Więcej
           </Link>
         </div>
@@ -112,11 +142,22 @@ export default function ThreeProducts({ products }) {
       </div>
       <div className={classes.rightPanel}>
         {products.map((product, index) => (
-          <div 
-            key={product.id} 
-            className={`${classes.donutContainer} ${ index === active ? classes.active : ""}`}
+          <div
+            key={product.id}
+            className={`${classes.donutContainer} ${
+              index === active
+                ? classes.active
+                : index === prevActive
+                ? classes.reverse
+                : ""
+            }`}
           >
-            <Image src={product.obrazek} alt={product.opis_obrazka} priority fill/>
+            <Image
+              src={product.obrazek}
+              alt={product.opis_obrazka}
+              priority
+              fill
+            />
           </div>
         ))}
       </div>

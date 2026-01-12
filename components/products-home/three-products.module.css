@@ -5,21 +5,34 @@
   /* background-color: red; */
 }
 
+@property --bg1 {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: rgba(240, 77, 104, 0.55);
+}
+
+@property --bg2 {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: rgba(255, 255, 255, 1);
+}
+
 .main {
   /* overflow: hidden; */
   /* min-height: 90vh; */
   height: 870px;
   max-width: 100%;
-  background: #f04d68;
   background: radial-gradient(
     circle,
-    rgba(240, 77, 104, 0.48) 16%,
-    rgba(255, 255, 255, 1) 73%
+    var(--bg1, rgba(240, 77, 104, 0.55)) 16%,
+    var(--bg2, rgba(255, 255, 255, 1)) 73%
   );
   background-repeat: no-repeat;
-  background-position-x: 120%;
+  background-position-x: 130%;
   background-size: 62%;
-
+  transition: --bg1 1.2s ease-in-out, --bg2 1.2s ease-in-out,
+    background-position 1.2s ease-in-out, background-size 1.2s ease-in-out;
+  will-change: background;
   display: flex;
 }
 .leftPanel,
@@ -137,8 +150,13 @@
   transform: translateY(-50%);
 }
 .donutContainer.active {
-  animation: donut 1s ease-in-out alternate both;
+  animation: donut 1s ease-in-out forwards;
   z-index: 1;
+}
+
+.donutContainer.reverse {
+  animation: donut-reverse 1s ease-in-out forwards;
+  z-index: 0;
 }
 
 @keyframes donut {
@@ -149,5 +167,16 @@
   100% {
     left: 25%;
     transform: translateY(-50%) rotate(0deg);
+  }
+}
+
+@keyframes donut-reverse {
+  0% {
+    left: 25%;
+    transform: translateY(-50%) rotate(0deg);
+  }
+  100% {
+    left: 100%;
+    transform: translateY(-50%) rotate(-270deg);
   }
 }
