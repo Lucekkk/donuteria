@@ -31,9 +31,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center  ;
 }
 .viewport {
+  margin-top: -140px;
   height: 150px;
   overflow: hidden;
 }
@@ -54,13 +55,13 @@
   position: relative;
   width: 65%;
   height: 20%;
-  transform: translateY(-25px);
+  /* transform: translateY(-25px); */
 }
 .description {
   position: absolute;
   top: 0;
   left: 0;
-  font-size: clamp(0.9rem, 0.6vw + 0.75rem, 1.25rem);
+  font-size: clamp(0.9rem, 0.6vw + 0.75rem, 0.6vw + 1.25rem);
   opacity: 0;
   transition: opacity 0.8s ease-in-out;
   color: #304065;
@@ -70,8 +71,8 @@
 }
 .links{
     width: 70%;
-    height: 20%;
-    transform: translateY(-100px);
+    /* height: 20%; */
+    /* transform: translateY(-100px); */
 
     display: flex;
     justify-content: space-evenly;
@@ -94,11 +95,31 @@
   transform: translateY(-5px);
 }
 
+.donutsBtnsContainer{
+  height: 10%;
+  width: 80%;
+  margin-top: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 
-.donutsBtnsContainer button {
+}
+.donutsBtn {
   position: relative;
-  height: 163px;
-  width: 163px;
+  height: clamp(5rem, 4vw + 5rem, 5rem + 7.5vw); 
+  width: clamp(5rem, 4vw + 5rem, 5rem + 7.5vw);
   border-radius: 50%;
   cursor: pointer;
+  border: none;
+  box-shadow: 4px 3px 12px 3px rgba(0, 0, 0, 0.3);
+  transition: 0.8s ease-in-out;
+  /* transform: scale(); */
+
+}
+.donutsBtn img{
+  pointer-events: none;
+}
+.donutsBtn.active{
+  transform: scale(1.2);
+  margin: 0 30px;
 }

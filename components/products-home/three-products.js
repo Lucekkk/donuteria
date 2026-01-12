@@ -22,6 +22,19 @@ export default function ThreeProducts({products}){
       </p>
     ))
   );
+  const [donutBtn, setDonutBtn] = useState(
+    products.map((prod, index) => (
+      <button 
+        key={prod.id} 
+        onClick={() => donutHandler(index)}
+        className={ index === 0
+          ? `${classes.donutsBtn} ${classes.active}`
+            : classes.donutsBtn
+        }
+        >
+          <Image src={prod.obrazek} alt={prod.opis_obrazka} priority fill/>
+      </button>
+          )))
 
 
 
@@ -49,6 +62,20 @@ export default function ThreeProducts({products}){
     }else{
       setBackgroundColor('#974F2D')
     }
+
+    setDonutBtn(
+      products.map((prod, index) => (
+        <button 
+          key={prod.id} 
+          onClick={() => donutHandler(index)}
+          className={ index === newIndex
+            ? `${classes.donutsBtn} ${classes.active}`
+              : classes.donutsBtn
+          }
+          >
+            <Image src={prod.obrazek} alt={prod.opis_obrazka} priority fill/>
+        </button>
+          )))
   };
     return(
          
@@ -76,11 +103,7 @@ export default function ThreeProducts({products}){
              </div>
 
             <div className={classes.donutsBtnsContainer}>
-                    {products.map((prod, index) => (
-                        <button key={prod.id} onClick={() => donutHandler(index)}>
-                            <Image src={prod.obrazek} alt={prod.opis_obrazka} priority fill/>
-                        </button>
-                    ))}
+                    {donutBtn}
             </div>
             
         </div>
