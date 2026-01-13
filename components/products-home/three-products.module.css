@@ -387,3 +387,20 @@
     transform: translateX(-95%) rotate(-250deg);
   }
 }
+
+/* SECTION */
+
+.section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 5% 0;
+}
+.section h2{
+  font-size: clamp(.8rem , 1rem + 1.35vw, 2rem + 2vw);
+}
+.section p{
+  font-size: clamp(0.9rem, 0.6vw + 0.75rem, 0.6vw + 1.25rem);
+  margin-top: 1.5%;
+}
