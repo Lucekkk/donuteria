@@ -3,7 +3,7 @@
     text-align: center;
 }
 .footer h3{
-     font-size: clamp(1.2rem , 0.7rem + 1.1vw, 1rem + 1.5vw);
+     font-size: clamp(2rem , 0.7rem + 1.1vw, 1rem + 1.5vw);
 } 
 .footer p{ 
     line-height: 1.3;

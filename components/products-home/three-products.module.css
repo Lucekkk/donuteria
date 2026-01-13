@@ -1,5 +1,3 @@
-
-
 @property --bg1 {
   syntax: "<color>";
   inherits: false;
@@ -218,13 +216,12 @@
   }
 }
 
-
 .fruitTwo {
   position: absolute;
   top: 15%;
   left: 120%;
 
-  transform: translateX(-45%) ;
+  transform: translateX(-45%);
   height: clamp(2.5rem, 6vw + 4rem, 2rem + 5vw);
   width: clamp(2.5rem, 6vw + 4rem, 2rem + 5vw);
 }
@@ -261,13 +258,12 @@
   }
 }
 
-
 .fruitThree {
   position: absolute;
   top: 70%;
   left: 120%;
 
-  transform: translateX(-45%) ;
+  transform: translateX(-45%);
   height: clamp(2.5rem, 6vw + 4rem, 2rem + 5vw);
   width: clamp(2.5rem, 6vw + 4rem, 2rem + 5vw);
 }
@@ -327,7 +323,7 @@
 @keyframes leafOne {
   0% {
     left: 120%;
-   transform: translateX(-30%) rotate(-250deg);
+    transform: translateX(-30%) rotate(-250deg);
   }
   100% {
     left: 30%;
@@ -369,7 +365,7 @@
 @keyframes leafTwo {
   0% {
     left: 120%;
-   transform: translateX(-95%) rotate(-250deg);
+    transform: translateX(-95%) rotate(-250deg);
   }
   100% {
     left: 95%;
@@ -390,17 +386,66 @@
 
 /* SECTION */
 
-.section{
+.section {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 5% 0;
 }
-.section h2{
-  font-size: clamp(.8rem , 1rem + 1.35vw, 2rem + 2vw);
+.section h2 {
+ font-size: clamp(2rem , 0.7rem + 1.1vw, 1rem + 1.5vw);
+  color: #223248;
 }
-.section p{
+.section p {
   font-size: clamp(0.9rem, 0.6vw + 0.75rem, 0.6vw + 1.25rem);
   margin-top: 1.5%;
+}
+
+/* SECTION CLIENTS */
+
+.sectionClients {
+  text-align: center;
+  min-height: 600px;
+  margin-bottom: 5%;
+  padding: 0 2%;
+
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: space-around;
+}
+.sectionClients h1 {
+  font-size: clamp(2rem , 0.7rem + 1.1vw, 1rem + 1.5vw);
+  color: #223248;
+  padding: 0 2%;
+}
+.customersBox {
+  height: auto;
+  min-height: 450px;
+  width: 100%;
+  display: flex;
+   
+  gap: 2rem;
+  justify-content: space-around;
+   
+  padding: 2rem 1rem;
+  /* background-color: yellow; */
+}
+
+ 
+
+@media (max-width: 1024px) {
+  .customersBox {
+    flex-direction: column;
+    align-items: center;
+    /* gap: 1.5rem; */
+  }
+
+  .sectionClients {
+    min-height: auto;
+    padding: 2rem 1rem;
+  }
+
+ 
 }

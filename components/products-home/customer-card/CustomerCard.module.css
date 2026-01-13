@@ -1,0 +1,70 @@
+/* SECTION CLIENTS */
+
+.card {
+  width: clamp(250px, 17%, 350px);
+  min-width: 250px;
+  max-width: 350px;
+  
+  padding: 15px;
+  border-radius: 65px;
+  box-shadow: inset 0px 18px 10px -16px rgba(0, 0, 0, 0.507),
+    inset 18px 0px 10px -16px rgba(0, 0, 0, 0.507);
+    
+    /* border: 2px solid rgba(0, 0, 0, 0.171); */
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 250px;
+  /* background-color: red; */
+}
+
+
+.customersImgBox {
+  width: clamp( 2rem, 4vw + 2rem, 5vw + 3.5rem);
+  height: clamp(2rem, 4vw + 2rem, 5vw + 3.5rem);
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  pointer-events: none;
+}
+.imgAndNameBox {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.imgAndNameBox p {
+  font-size: clamp(2.3rem, 1rem + 1.35vw, 2rem + 2vw);
+  color: #223248;
+}
+
+.customersOpinionBox {
+  margin-top: 10%;
+}
+.customersOpinionBox p {
+  font-size: clamp(1.5rem, 0.6vw + 0.75rem, 0.6vw + 1.25rem);
+  color: #223248;
+}
+@media (max-width: 1024px) {
+  
+    .card {
+    width: 90%;
+    max-width: 350px;
+    flex: 1 1 350px;
+    justify-content: space-evenly;
+  }
+
+
+
+   .customersImgBox {
+  width: clamp( 5.5rem, 4vw + 2rem, 5vw + 3.5rem);
+  height: clamp(5.5rem, 4vw + 2rem, 5vw + 3.5rem);
+ 
+}
+}
+/* 
+@media (max-width: 768px) {
+   
+
+
+  
+ 
+} */

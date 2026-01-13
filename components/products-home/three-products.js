@@ -12,6 +12,9 @@ const fruitsTable = [strawberry, blueberry, chocolate];
 import leaf from "@/assets/leaf.png";
 const leafTable = [leaf, leaf, leaf];
 
+import CustomerCard from "./customer-card/CustomerCard";
+
+
 export default function ThreeProducts({ products }) {
   const [active, setActive] = useState(0);
   const [prevActive, setPrevActive] = useState(0);
@@ -236,6 +239,17 @@ export default function ThreeProducts({ products }) {
         <p>Rzemieślnicze donuty wypiekane codziennie</p>
         <p>Tradycyjna receptura</p>
         <p>Lokalna produkcja</p>
+      </section>
+      <section className={classes.sectionClients}>
+          <h1>Opinie naszych klientów:</h1>
+
+          <div className={classes.customersBox}>
+            <CustomerCard index={0} alt={'customer woman'} name={'Kamila'} opinion={'„Najlepsze donuty jakie jadłam w życiu. Wrócę na pewno.”'}/>
+            <CustomerCard index={1} alt={'customer man'} name={'Marcin'} opinion={'„Rewelacyjne donuty, a obsługa bardzo miła. Zawsze bardzo pomocni.”'}/>
+            <CustomerCard index={2} alt={'customer woman'} name={'Kasia'} opinion={'„Czuć naturalne składniki. Zdecydowanie polecam!”'}/>
+          </div>
+          
+          
       </section>
     </>
   );
