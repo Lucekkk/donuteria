@@ -4,6 +4,16 @@ import classes from "./three-products.module.css";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
+import strawberry from '@/assets/strawberry.png';
+import blueberry from '@/assets/blueberry.png';
+import chocolate from '@/assets/chocolate.png';
+const fruitsTable = [strawberry, blueberry, chocolate];
+
+import leaf from '@/assets/leaf.png';
+const leafTable = [leaf, leaf, leaf];
+
+ 
+ 
 export default function ThreeProducts({ products }) {
   const [active, setActive] = useState(0);
   const [prevActive, setPrevActive] = useState(0);
@@ -160,6 +170,94 @@ export default function ThreeProducts({ products }) {
             />
           </div>
         ))}
+
+        {fruitsTable.map((fruit, index) => (
+            <div
+              key={index} 
+              className={`${classes.fruitOne} ${
+                index === active
+                ? classes.active
+                : index === prevActive
+                ? classes.reverse
+                : ""}
+                `}>
+              <Image 
+                src={fruit.src} 
+                alt={'fruit'} 
+                priority 
+                fill
+              />
+            </div>))}
+
+        {fruitsTable.map((fruit, index) => (
+            <div
+              key={index} 
+              className={`${classes.fruitTwo} ${
+                index === active
+                ? classes.active
+                : index === prevActive
+                ? classes.reverse
+                : ""}
+                `}>
+              <Image 
+                src={fruit.src} 
+                alt={'fruit'} 
+                priority 
+                fill
+              />
+            </div>))}
+         {fruitsTable.map((fruit, index) => (
+            <div
+              key={index} 
+              className={`${classes.fruitThree} ${
+                index === active
+                ? classes.active
+                : index === prevActive
+                ? classes.reverse
+                : ""}
+                `}>
+              <Image 
+                src={fruit.src} 
+                alt={'fruit'} 
+                priority 
+                fill
+              />
+            </div>))}
+            {leafTable.map((leaf, index) => (
+            <div
+              key={index} 
+              className={`${classes.leafOne} ${
+                index === active
+                ? classes.active
+                : index === prevActive
+                ? classes.reverse
+                : ""}
+                `}>
+              <Image 
+                src={leaf.src} 
+                alt={'leaf'} 
+                priority 
+                fill
+              />
+            </div>))}
+            {leafTable.map((leaf, index) => (
+            <div
+              key={index} 
+              className={`${classes.leafTwo} ${
+                index === active
+                ? classes.active
+                : index === prevActive
+                ? classes.reverse
+                : ""}
+                `}>
+              <Image 
+                src={leaf.src} 
+                alt={'leaf'} 
+                priority 
+                fill
+              />
+            </div>))}     
+        
       </div>
     </main>
   );
