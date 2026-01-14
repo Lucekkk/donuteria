@@ -5,8 +5,8 @@ import classes from "./Three-products.module.css";
 import { useState, useEffect } from "react";
 import Link from "next/link";
  
-import CustomerCard from "./customer-card/CustomerCard";
-import FruitsAndLeaves from "./fruits-and-leaves/FruitsAndLeaves";
+import CustomerCard from "./Customer-card/CustomerCard";
+import FruitsAndLeaves from "./Fruits-and-leaves/FruitsAndLeaves";
 
 export default function ThreeProducts({ products }) {  
   const [active, setActive] = useState(0);
