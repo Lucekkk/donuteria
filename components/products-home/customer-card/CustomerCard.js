@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 'use client';
 import Image from "next/image";
 import classes from './CustomerCard.module.css'

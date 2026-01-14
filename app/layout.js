@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import StoreProvider from "@/store/StoreProvider";
 import "./globals.css";
-import HeaderMain from "@/components/header/header-main";
-import Footer from "@/components/footer/footer";
+import HeaderMain from "@/components/header/Header-main";
+import Footer from "@/components/footer/Footer";
 
 
 export const metadata = {

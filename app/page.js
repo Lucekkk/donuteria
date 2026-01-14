@@ -1,8 +1,7 @@
 // import Counter from "@/components/Counter";
 import {getThreeProducts} from "@/app/api/threeProducts/route";
-import Image from "next/image";
 import classes from "./page.module.css";
-import ThreeProducts from "@/components/products-home/three-products";
+import ThreeProducts from "@/components/products-home/Three-products";
 import { Suspense } from "react";
 
 

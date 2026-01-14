@@ -13,37 +13,40 @@ const leafTable = [leaf, leaf, leaf];
 
 
 export default function FruitsAndLeaves({active, prevActive, className, tableName}){
-
     
-    let fruitClassName = null;
-    let leafClassName = null;
-
+    let itemClassName = null;
     const table = tableName === 'fruitsTable' ? [...fruitsTable] : [...leafTable];
+    const elementsName = tableName === 'fruitsTable' ? 'fruit' : 'leaf';
 
 
-    if(className === 'fruitOne'){
-        fruitClassName = classes.fruitOne;
+    switch (className) {
+        case 'fruitOne':
+        itemClassName = classes.fruitOne;
+        break;
+        case 'fruitTwo':
+        itemClassName = classes.fruitTwo;
+        break;
+        case 'fruitThree':
+        itemClassName = classes.fruitThree;
+        break;
+        case 'leafOne':
+        itemClassName = classes.leafOne;
+        break;
+        case 'leafTwo':
+        itemClassName = classes.leafTwo;
+        break;
+    
+        default: return;
+}
 
-    }else if(className === 'fruitTwo'){
-        fruitClassName = classes.fruitTwo;
-
-    }else if((className === 'fruitThree')){
-        fruitClassName = classes.fruitThree;
-    }
-
-    if(className === 'leafOne'){
-        leafClassName = classes.leafOne;
-    }else if(className === 'leafTwo'){
-        leafClassName = classes.leafTwo;
-    }
 
     return(
         <> 
-        {tableName === 'fruitsTable' ? ( 
-            table.map((fruit, index) => (
+       
+           { table.map((item, index) => (
             <div
               key={index}
-              className={`${fruitClassName} ${
+              className={`${itemClassName} ${
                 index === active
                   ? classes.active
                   : index === prevActive
@@ -52,26 +55,10 @@ export default function FruitsAndLeaves({active, prevActive, className, tableNam
               }
                 `}
             >
-              <Image src={fruit.src} alt={"fruit"} priority fill />
+              <Image src={item.src} alt={`${elementsName}`} priority fill />
             </div>
-          ))) 
-          : 
-          (table.map((leaf, index) => (
-            <div
-              key={index}
-              className={`${leafClassName} ${
-                index === active
-                  ? classes.active
-                  : index === prevActive
-                  ? classes.reverse
-                  : ""
-              }
-                `}
-            >
-              <Image src={leaf.src} alt={"leaf"} priority fill />
-            </div>
-          )) )
-          }
+          ))}
+    
             
         </>
         
