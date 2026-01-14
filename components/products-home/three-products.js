@@ -1,23 +1,25 @@
+/* eslint-disable react/prop-types */
 "use client";
 import Image from "next/image";
 import classes from "./three-products.module.css";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+ 
 
-import strawberry from "@/assets/strawberry.png";
-import blueberry from "@/assets/blueberry.png";
-import chocolate from "@/assets/chocolate.png";
-const fruitsTable = [strawberry, blueberry, chocolate];
 
 import leaf from "@/assets/leaf.png";
 const leafTable = [leaf, leaf, leaf];
 
 import CustomerCard from "./customer-card/CustomerCard";
+import Fruits from "./fruits/Fruits";
 
 
 export default function ThreeProducts({ products }) {
+ 
+  
   const [active, setActive] = useState(0);
   const [prevActive, setPrevActive] = useState(0);
+
   const [isAnimating, setIsAnimating] = useState(false);
   const [linkBackgroundColor, setLinkBackgroundColor] = useState("#EA7BBE");
   const [bg1, setBg1] = useState("rgba(240, 77, 104, 0.55)");
@@ -156,7 +158,11 @@ export default function ThreeProducts({ products }) {
             </div>
           ))}
 
-          {fruitsTable.map((fruit, index) => (
+          <Fruits active={active} prevActive={prevActive} className={'fruitOne'}/>
+          <Fruits active={active} prevActive={prevActive} className={'fruitTwo'}/>
+          <Fruits active={active} prevActive={prevActive} className={'fruitThree'}/>
+
+          {/* {fruitsTable.map((fruit, index) => (
             <div
               key={index}
               className={`${classes.fruitOne} ${
@@ -201,7 +207,8 @@ export default function ThreeProducts({ products }) {
             >
               <Image src={fruit.src} alt={"fruit"} priority fill />
             </div>
-          ))}
+          ))} */}
+
           {leafTable.map((leaf, index) => (
             <div
               key={index}

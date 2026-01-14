@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from '@/store/counter';
+import homeReducer from  "@/store/home-active-states";
 
 export const store = configureStore({
     reducer:{
-        counter: counterReducer
+        homeActive: homeReducer
     }
 })
 
