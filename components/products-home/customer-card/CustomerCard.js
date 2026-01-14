@@ -20,6 +20,6 @@ export default function CustomerCard({index, alt, name, opinion}){
               <div className={classes.customersOpinionBox}>
                 <p>{opinion}</p>
               </div>
-            </div>
+        </div>
     )
 }

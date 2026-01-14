@@ -1,3 +1,8 @@
+:root{
+    --leafOne: 30%;
+    --donutX: 5%;
+  
+  }
 @property --bg1 {
   syntax: "<color>";
   inherits: false;
@@ -52,7 +57,7 @@
   transition: transform 0.8s ease-in-out;
 }
 .slide {
-  font-size: clamp(1.4rem, 2.8rem + 1.5vw, 0.4rem + 4vw);
+  font-size: clamp(2.4rem, 2.8rem + 1.5vw, 0.4rem + 4vw);
   height: 150px;
   display: flex;
   align-items: center;
@@ -140,7 +145,7 @@
   height: clamp(15rem, 14vw + 18rem, 10rem + 22vw);
   width: clamp(15rem, 14vw + 18rem, 10rem + 22vw);
   border-radius: 50%;
-  transform: translateY(-50%);
+  /* transform: translateY(-50%); */
 }
 .donutContainer.active {
   animation: donut 1s ease-in-out forwards;
@@ -154,23 +159,23 @@
 
 @keyframes donut {
   0% {
-    left: 100%;
-    transform: translateY(-50%) rotate(-270deg);
+    left: 105%;
+    transform: translate(var(--donutX),-50%) rotate(-270deg);
   }
   100% {
     left: 25%;
-    transform: translateY(-50%) rotate(0deg);
+    transform: translate(var(--donutX),-50%) rotate(0deg);
   }
 }
 
 @keyframes donut-reverse {
   0% {
     left: 25%;
-    transform: translateY(-50%) rotate(0deg);
+    transform: translate(var(--donutX),-50%) rotate(0deg);
   }
   100% {
-    left: 100%;
-    transform: translateY(-50%) rotate(-270deg);
+    left: 105%;
+    transform: translate(var(--donutX),-50%) rotate(-270deg);
   }
 }
 
@@ -305,7 +310,7 @@
   top: 4%;
   left: 120%;
 
-  transform: translateX(-45%);
+  /* transform: translateX(-45%); */
   height: clamp(2.5rem, 6vw + 4rem, 2rem + 5vw);
   width: clamp(2.5rem, 6vw + 4rem, 2rem + 5vw);
 }
@@ -323,22 +328,22 @@
 @keyframes leafOne {
   0% {
     left: 120%;
-    transform: translateX(-30%) rotate(-250deg);
+    transform: translateX(calc(-1 * var(--leafOne))) rotate(-250deg);
   }
   100% {
-    left: 30%;
-    transform: translateX(-30%) rotate(0);
+    left: var(--leafOne);
+    transform: translateX(calc(-1 * var(--leafOne))) rotate(0);
   }
 }
 
 @keyframes leafOne-reverse {
   0% {
-    left: 30%;
-    transform: translateX(-30%) rotate(0);
+    left: var(--leafOne);
+    transform: translateX(calc(-1 * var(--leafOne))) rotate(0);
   }
   100% {
     left: 120%;
-    transform: translateX(-30%) rotate(-250deg);
+    transform: translateX(calc(-1 * var(--leafOne))) rotate(-250deg);
   }
 }
 
@@ -392,13 +397,14 @@
   align-items: center;
   justify-content: center;
   margin: 5% 0;
+  text-align: center;
 }
 .section h2 {
- font-size: clamp(2rem , 0.7rem + 1.1vw, 1rem + 1.5vw);
+ font-size: clamp(2rem , 1.7rem + 1.1vw, 2rem + 1.7vw);
   color: #223248;
 }
 .section p {
-  font-size: clamp(0.9rem, 0.6vw + 0.75rem, 0.6vw + 1.25rem);
+ font-size: clamp(1.2rem, .6vw + 1.75rem, .6vw + 1.25rem);
   margin-top: 1.5%;
 }
 
@@ -433,9 +439,39 @@
   /* background-color: yellow; */
 }
 
+@media (max-width: 1410px){
+  :root{
+    --donutX: -5%;
+  }
+}
  
 
 @media (max-width: 1024px) {
+  :root{
+ --leafOne: 10%;
+  --donutX: 5%;
+ }
+  .main{
+    flex-direction: column-reverse;
+    justify-content: center;
+    /* margin-top: 15%; */
+    background-repeat: repeat;
+    background-position-y: -200px ;
+    height: 1250px;
+  }
+  .viewport{
+     margin-top: 0;
+  }
+  .descriptionBox{
+    height: 30%;
+  }
+  .leftPanel,
+.rightPanel {
+  flex-basis: 40%;
+}
+  .description{
+      font-size: clamp(0.9rem, 0.9vw + 0.75rem, 0.6vw + 1.25rem);
+  }
   .customersBox {
     flex-direction: column;
     align-items: center;
@@ -446,6 +482,26 @@
     min-height: auto;
     padding: 2rem 1rem;
   }
+  
+  .section {
+   
+  margin: 9% 0;
+}
 
  
+}
+
+@media (max-width: 430px){
+  :root{
+    --donutX: -5%;
+  }
+  .donutsBtnsContainer{
+    width: 100%;
+  }
+  .descriptionBox {
+  text-align: center;
+  width: 85%;
+   
+  /* transform: translateY(-25px); */
+}
 }

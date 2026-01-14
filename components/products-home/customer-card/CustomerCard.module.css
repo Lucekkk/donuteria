@@ -60,6 +60,18 @@
  
 }
 }
+@media (max-width: 512px) {
+  
+    .card {
+    width: 100%;
+    max-width: auto;
+    ;
+  }
+
+
+
+ 
+}
 /* 
 @media (max-width: 768px) {
    
