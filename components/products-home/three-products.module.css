@@ -46,6 +46,7 @@
 }
 .rightPanel {
   position: relative;
+  pointer-events: none;
 }
 .viewport {
   margin-top: -140px;
@@ -468,6 +469,7 @@
   .leftPanel,
 .rightPanel {
   flex-basis: 40%;
+  
 }
   .description{
       font-size: clamp(0.9rem, 0.9vw + 0.75rem, 0.6vw + 1.25rem);
