@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 "use client";
 import Image from "next/image";
-import classes from "./three-products.module.css";
+import classes from "./Three-products.module.css";
 import { useState, useEffect } from "react";
 import Link from "next/link";
  
