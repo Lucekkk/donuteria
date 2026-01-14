@@ -123,3 +123,87 @@
     transform: translateX(-15%) rotate(0);
   }
 }
+
+.leafOne {
+  position: absolute;
+  top: 4%;
+  left: 120%;
+
+  /* transform: translateX(-45%); */
+  height: clamp(2.5rem, 6vw + 4rem, 2rem + 5vw);
+  width: clamp(2.5rem, 6vw + 4rem, 2rem + 5vw);
+}
+
+.leafOne.active {
+  animation: leafOne 1s ease-in-out forwards;
+  z-index: 1;
+}
+
+.leafOne.reverse {
+  animation: leafOne-reverse 1s ease-in-out forwards;
+  z-index: 0;
+}
+
+@keyframes leafOne {
+  0% {
+    left: 120%;
+    transform: translateX(calc(-1 * var(--leafOne))) rotate(-250deg);
+  }
+  100% {
+    left: var(--leafOne);
+    transform: translateX(calc(-1 * var(--leafOne))) rotate(0);
+  }
+}
+
+@keyframes leafOne-reverse {
+  0% {
+    left: var(--leafOne);
+    transform: translateX(calc(-1 * var(--leafOne))) rotate(0);
+  }
+  100% {
+    left: 120%;
+    transform: translateX(calc(-1 * var(--leafOne))) rotate(-250deg);
+  }
+}
+
+.leafTwo {
+  position: absolute;
+  top: 45%;
+  left: 120%;
+
+  transform: translateX(-45%);
+  height: clamp(2.5rem, 6vw + 4rem, 2rem + 5vw);
+  width: clamp(2.5rem, 6vw + 4rem, 2rem + 5vw);
+}
+
+.leafTwo.active {
+  animation: leafTwo 1s ease-in-out forwards;
+  z-index: 1;
+}
+
+.leafTwo.reverse {
+  animation: leafTwo-reverse 1s ease-in-out forwards;
+  z-index: 0;
+}
+
+@keyframes leafTwo {
+  0% {
+    left: 120%;
+    transform: translateX(-95%) rotate(-250deg);
+  }
+  100% {
+    left: 95%;
+    transform: translateX(-95%) rotate(0);
+  }
+}
+
+@keyframes leafTwo-reverse {
+  0% {
+    left: 95%;
+    transform: translateX(-95%) rotate(0);
+  }
+  100% {
+    left: 120%;
+    transform: translateX(-95%) rotate(-250deg);
+  }
+}

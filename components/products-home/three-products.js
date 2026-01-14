@@ -5,21 +5,12 @@ import classes from "./three-products.module.css";
 import { useState, useEffect } from "react";
 import Link from "next/link";
  
-
-
-import leaf from "@/assets/leaf.png";
-const leafTable = [leaf, leaf, leaf];
-
 import CustomerCard from "./customer-card/CustomerCard";
-import Fruits from "./fruits/Fruits";
+import FruitsAndLeaves from "./fruits-and-leaves/FruitsAndLeaves";
 
-
-export default function ThreeProducts({ products }) {
- 
-  
+export default function ThreeProducts({ products }) {  
   const [active, setActive] = useState(0);
   const [prevActive, setPrevActive] = useState(0);
-
   const [isAnimating, setIsAnimating] = useState(false);
   const [linkBackgroundColor, setLinkBackgroundColor] = useState("#EA7BBE");
   const [bg1, setBg1] = useState("rgba(240, 77, 104, 0.55)");
@@ -158,9 +149,11 @@ export default function ThreeProducts({ products }) {
             </div>
           ))}
 
-          <Fruits active={active} prevActive={prevActive} className={'fruitOne'}/>
-          <Fruits active={active} prevActive={prevActive} className={'fruitTwo'}/>
-          <Fruits active={active} prevActive={prevActive} className={'fruitThree'}/>
+          <FruitsAndLeaves active={active} prevActive={prevActive} className={'fruitOne'} tableName={'fruitsTable'}/>
+          <FruitsAndLeaves active={active} prevActive={prevActive} className={'fruitTwo'} tableName={'fruitsTable'}/>
+          <FruitsAndLeaves active={active} prevActive={prevActive} className={'fruitThree'} tableName={'fruitsTable'}/>
+          <FruitsAndLeaves active={active} prevActive={prevActive} className={'leafOne'} tableName={'leafTable'}/>
+          <FruitsAndLeaves active={active} prevActive={prevActive} className={'leafTwo'} tableName={'leafTable'}/>
 
           {/* {fruitsTable.map((fruit, index) => (
             <div
@@ -209,7 +202,7 @@ export default function ThreeProducts({ products }) {
             </div>
           ))} */}
 
-          {leafTable.map((leaf, index) => (
+          {/* {leafTable.map((leaf, index) => (
             <div
               key={index}
               className={`${classes.leafOne} ${
@@ -238,7 +231,7 @@ export default function ThreeProducts({ products }) {
             >
               <Image src={leaf.src} alt={"leaf"} priority fill />
             </div>
-          ))}
+          ))} */}
         </div>
       </main>
       <section className={classes.section}>
