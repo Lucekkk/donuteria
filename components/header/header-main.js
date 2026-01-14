@@ -13,7 +13,7 @@ export default function HeaderMain(){
                     <li><NavLink href="/o-nas">O nas</NavLink></li>
                     <li><NavLink href="/produkty">Nasze produkty</NavLink></li>
                     <li><NavLink href="/koszyk">Koszyk</NavLink></li>
-                    <li><NavLink href="/logowanie">Logowani</NavLink></li>
+                    <li><NavLink href="/logowanie">Logowanie</NavLink></li>
                 </ul>
             </nav>
         </header>
