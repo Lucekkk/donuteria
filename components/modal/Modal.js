@@ -5,6 +5,7 @@ export default function Modal(){
     return createPortal(
         <>
             <div className={classes.modal}>modal</div>
+            {/* UMIESCIC NAV WRAZ Z LINKAMI */}
         
         </>, 
         document.getElementById('modal')
