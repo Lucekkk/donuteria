@@ -19,3 +19,10 @@
 .active{
     border-bottom: 2px solid #223248;
 }
+
+@media((max-width: 512px) and (orientation: portrait)){
+    .link{
+         font-size: clamp(0.9rem, 0.6vw + 1rem, 1.5rem);
+    }
+    
+}

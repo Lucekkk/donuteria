@@ -1,11 +1,14 @@
+.fruitOne, .fruitTwo, .fruitThree{
+height: clamp(5rem, 6vw + 4rem, 2rem + 5vw);
+  width: clamp(5rem, 6vw + 4rem, 2rem + 5vw);
+}
 .fruitOne {
   position: absolute;
   top: -3%;
   left: 120%;
 
   transform: translateX(-45%) rotate(-25deg);
-  height: clamp(2.5rem, 6vw + 4rem, 2rem + 5vw);
-  width: clamp(2.5rem, 6vw + 4rem, 2rem + 5vw);
+  
 }
 
 .fruitOne.active {
@@ -46,8 +49,7 @@
   left: 120%;
 
   transform: translateX(-45%);
-  height: clamp(2.5rem, 6vw + 4rem, 2rem + 5vw);
-  width: clamp(2.5rem, 6vw + 4rem, 2rem + 5vw);
+  
 }
 
 .fruitTwo.active {
@@ -88,8 +90,7 @@
   left: 120%;
 
   transform: translateX(-45%);
-  height: clamp(2.5rem, 6vw + 4rem, 2rem + 5vw);
-  width: clamp(2.5rem, 6vw + 4rem, 2rem + 5vw);
+  
 }
 
 .fruitThree.active {
@@ -205,5 +206,14 @@
   100% {
     left: 120%;
     transform: translateX(-95%) rotate(-250deg);
+  }
+}
+@media((min-width:1024px) and (max-width: 1472px) ){
+   
+  .fruitOne{
+    top:10%;
+  }
+  .leafOne{
+    top:18%;
   }
 }

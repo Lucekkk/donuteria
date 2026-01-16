@@ -100,3 +100,19 @@
 .hamburgerInner.active::after {
   transform: translateY(-18px) rotate(-45deg);
 }
+
+@media(max-width: 512px){
+  .header{
+    justify-content: space-around;
+    padding: 30px 0;
+  }
+  .header h1{
+    flex-basis: 60%;
+    font-size: clamp(1rem, 1rem + 3vw, 2rem + 2vw);
+    padding: auto;
+  }
+   
+  .nav{
+    flex-basis: 30%;
+  }
+}

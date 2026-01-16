@@ -43,7 +43,7 @@ export default function HeaderMain() {
                 ></span>
                 </span>
             </button>
-            {activeBtn === true ? <Modal /> : null}
+            {activeBtn === true ? <Modal closeMenu={btnHandler} /> : null}
             </>
           
         ) : (
