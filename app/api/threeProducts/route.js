@@ -11,6 +11,7 @@ export async function GET() {
 // Fetch users from the API; build an absolute URL using env/localhost so Node's fetch accepts it
 export async function getThreeProducts() {
   //  await new Promise (resolve => setTimeout(resolve, 5000));
+  // throw new Error();
   const baseUrl =
     process.env.NEXT_PUBLIC_SITE_URL ||
     process.env.SITE_URL ||
