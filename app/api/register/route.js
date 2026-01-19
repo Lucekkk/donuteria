@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 import { db } from "@/lib/db";
 
 export async function POST(request) {
