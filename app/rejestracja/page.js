@@ -4,13 +4,13 @@ import { useActionState } from "react";
 import {registerUser} from '@/lib/actions';
 
 export default function Rejestracja(){
-    const [state, formAction] = useActionState(registerUser, {message: null});
+    const [state, formAction, isPending] = useActionState(registerUser, {message: null, values: {}});
     console.log(state.message);
     return(
         <>
          <h1>Zarejestruj się już dziś!</h1>
 
-        <form  action={formAction}>
+        <form action={formAction}>
           
             <p>
               <label htmlFor="login">Login</label>
@@ -18,8 +18,8 @@ export default function Rejestracja(){
                 type="text"
                 id="login"
                 name="login"
-                required
-                
+                // required
+                defaultValue={state.values?.login || ''}
               />
             </p>
             <p>
@@ -28,8 +28,8 @@ export default function Rejestracja(){
                 type="email"
                 id="email"
                 name="email"
-                required
-                
+                // required
+                defaultValue={state.values?.email || ''}
               />
             </p>
           
@@ -39,14 +39,14 @@ export default function Rejestracja(){
               type="password"
               id="password"
               name="password"
-              required
-              
+              // required
+               defaultValue={state.values?.password_hash || ''}
             />
           </p>
           
           
           <p>
-            <button>Zarejestruj</button>
+            <button disabled={isPending}>{isPending === true ? 'Oczekiwanie' : 'Zarejestruj'}</button>
           </p>
         </form>
         </>

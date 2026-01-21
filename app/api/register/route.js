@@ -7,9 +7,9 @@ export async function POST(request) {
     const newUser = await request.json();
 
     const [rows] = await db.query(
-      `INSERT INTO uzytkownicy(login, email, haslo_hash, data_utworzenia, rola)
+      `INSERT INTO uzytkownicy(login, email, password_hash, data_utworzenia, rola)
        VALUES(?, ?, ?, CURRENT_DATE(), 'user')`,
-      [newUser.login, newUser.email, newUser.haslo_hash],
+      [newUser.login, newUser.email, newUser.password_hash],
     );
 
     return Response.json({
@@ -26,6 +26,7 @@ export async function POST(request) {
 }
 
 export async function sendRegisterInfo(newUser) {
+  // await new Promise (resolve => setTimeout(resolve, 5000));
   const baseUrl =
     process.env.NEXT_PUBLIC_SITE_URL ||
     process.env.SITE_URL ||
