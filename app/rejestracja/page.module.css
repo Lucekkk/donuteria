@@ -1,0 +1,93 @@
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 700px;
+    margin: 190px 0;
+}
+.registerPanel{
+    border: 2px solid #B8B4B4;
+    border-radius: 35px;
+    padding: 50px;
+    box-shadow: 4px 4px 4px 0px #B8B4B4;
+
+    max-width: 800px;
+}
+.registerHeaderBox h1{
+     font-size: clamp(2rem , 0.7rem + 1.4vw, 1.3rem + 2vw);
+     margin-bottom: 20px;
+}
+.registerHeaderBox p{
+    
+    margin-bottom: 30px;
+}
+
+.registerHeaderBox{
+    text-align: center;
+}
+
+ .labelAndInputBox{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+ }
+  .labelAndInputBox label {
+    
+    margin-bottom: 10px;
+  }
+   
+  .labelAndInputBox input{
+    
+    padding: 5px 5px 5px 15px;
+    border: 2px solid #B8B4B4;
+    border-radius: 35px;
+    height: 45px;
+  }
+  .checkboxContainer{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  .checkboxInput{
+    width: 22px;
+    height: 22px;
+  }
+  .checkboxLabel{
+    margin-left: 10px;
+  }
+
+  .btnContainer{
+    text-align: center;
+}
+.btnContainer button{
+    
+    width: 100%;
+    padding: 20px;
+     border: none;
+    border-radius: 35px;
+    background-color: #F9DEDE;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .btnContainer button:hover{
+    background-color: #B8B4B4;
+  }
+
+  .registerHeaderBox p, .labelAndInputBox label, .checkboxLabel, .labelAndInputBox input, .btnContainer button{
+    font-size: clamp(1.1rem, .6vw + .75rem, .6vw + 1.25rem);
+  }
+
+  .errorMessage{
+    color: red;
+    margin: 10px 0;
+  }
+  @media(orientation: portrait){
+    
+    .registerPanel{
+        padding: 40px 20px;
+        max-width: 90%;
+    }
+  }

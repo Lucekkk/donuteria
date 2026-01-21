@@ -2,53 +2,76 @@
 
 import { useActionState } from "react";
 import {registerUser} from '@/lib/actions';
+import classes from './page.module.css';
 
 export default function Rejestracja(){
     const [state, formAction, isPending] = useActionState(registerUser, {message: null, values: {}});
     console.log(state.message);
     return(
         <>
-         <h1>Zarejestruj się już dziś!</h1>
+        <main className={classes.main}>
+          <div className={classes.registerPanel}>
 
-        <form action={formAction}>
-          
-            <p>
-              <label htmlFor="login">Login</label>
-              <input
-                type="text"
-                id="login"
-                name="login"
-                // required
-                defaultValue={state.values?.login || ''}
-              />
-            </p>
-            <p>
-              <label htmlFor="email">email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                // required
-                defaultValue={state.values?.email || ''}
-              />
-            </p>
-          
-          <p>
-            <label htmlFor="password">Hasło</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              // required
-               defaultValue={state.values?.password_hash || ''}
-            />
-          </p>
-          
-          
-          <p>
-            <button disabled={isPending}>{isPending === true ? 'Oczekiwanie' : 'Zarejestruj'}</button>
-          </p>
-        </form>
+              <div className={classes.registerHeaderBox}>
+                <h1>Rejestracja</h1>
+                <p>Zarejestruj się już dziś i zgarnij dodatkowe donuty!</p>
+              </div>
+                
+                <form action={formAction}>
+                  
+                    <div className={classes.labelAndInputBox}>
+                      <label htmlFor="login">Login</label>
+                      <input
+                        type="text"
+                        id="login"
+                        name="login"
+                        defaultValue={state.values?.login || ''}
+                        placeholder="Podaj login"
+                        required
+                      />
+                    </div>
+                    <div className={classes.labelAndInputBox}>
+                      <label htmlFor="email">Email</label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        defaultValue={state.values?.email || ''}
+                        placeholder="Podaj email"
+                        required
+                      />
+                    </div>
+                  
+                  <div className={classes.labelAndInputBox}>
+                    <label htmlFor="password">Hasło</label>
+                    <input
+                      type="password"
+                      id="password"
+                      name="password"
+                      defaultValue={state.values?.password_hash || ''}
+                      required
+                      placeholder="Podaj hasło"
+                    />
+                     {state.message === 'Hasło musi mieć od 8 do 20 znaków, oraz posiadać jedną cyfrę i jedną, wielką literę' && <p className={classes.errorMessage}>{state.message}</p>}
+                  </div>
+                 
+
+                  <div className={classes.checkboxContainer}>
+                    <input 
+                      type="checkbox"
+                      id="regulations"
+                      name="regulations"
+                      className={classes.checkboxInput}
+                      />
+                      <label htmlFor="regulations" className={classes.checkboxLabel}>*Zapoznałem się z regulaminem strony</label>
+                  </div>
+
+                  <p className={classes.btnContainer}>
+                    <button disabled={isPending}>{isPending === true ? 'Oczekiwanie' : 'Zarejestruj'}</button>
+                  </p>
+                </form>
+              </div>
+         </main>
         </>
        
     )
