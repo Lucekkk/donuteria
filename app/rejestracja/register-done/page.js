@@ -1,5 +1,15 @@
+import Link from "next/link";
+import classes from './page.module.css';
+
 export default function RegisterDone(){
     return(
-        <h1>Udalo ci się zarejestrować, przejdź do sekcji logowania</h1>
+        <>
+            <main className={classes.main}>
+                <h1>Udało ci się zarejestrować. Możesz teraz przejść do sekcji logowania poniżej.</h1>
+                <Link href={'/logowanie'}>Zaloguj</Link>
+            </main>
+            
+        </>
+        
     )
 }

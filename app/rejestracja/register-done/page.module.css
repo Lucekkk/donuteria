@@ -1,0 +1,28 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 700px;
+    margin-bottom: 190px;
+    text-align: center;
+    background-image: url('../../../assets/donutsBgc.jpg');
+}
+
+.main a{
+    width: 250px;
+    display: inline-block;
+     font-size: clamp(1.1rem, .6vw + .75rem, .6vw + 1.25rem);
+    text-decoration: none;
+    padding: 20px;
+    border: none;
+    border-radius: 35px;
+    background-color: #F9DEDE;
+    font-weight: 600;
+    color: black;
+    margin-top: 70px;
+}
+
+.main a:hover{
+     background-color: #B8B4B4
+}
