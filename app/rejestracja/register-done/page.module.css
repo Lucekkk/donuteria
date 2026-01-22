@@ -10,7 +10,7 @@
 }
 
 .main a{
-    width: 250px;
+    width: 300px;
     display: inline-block;
      font-size: clamp(1.1rem, .6vw + .75rem, .6vw + 1.25rem);
     text-decoration: none;
