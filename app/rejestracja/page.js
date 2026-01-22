@@ -28,7 +28,10 @@ export default function Rejestracja(){
                         defaultValue={state.values?.login || ''}
                         placeholder="Podaj login"
                         required
+                        
                       />
+                      {state.message === "Login musi mieć długość między 1 a 35 znaków" && <p className={classes.errorMessage}>{state.message}</p>}
+                      {state.message === "Nazwa loginu jest już zarezerowana" && <p className={classes.errorMessage}>{state.message}</p>}
                     </div>
                     <div className={classes.labelAndInputBox}>
                       <label htmlFor="email">Email</label>
@@ -40,6 +43,8 @@ export default function Rejestracja(){
                         placeholder="Podaj email"
                         required
                       />
+                      {state.message === "Wpisz poprawny email" && <p className={classes.errorMessage}>{state.message}</p>}
+                      {state.message === "Ten email jest już zajęty" && <p className={classes.errorMessage}>{state.message}</p>}
                     </div>
                   
                   <div className={classes.labelAndInputBox}>
@@ -62,9 +67,13 @@ export default function Rejestracja(){
                       id="regulations"
                       name="regulations"
                       className={classes.checkboxInput}
+                      defaultChecked = {state.values?.isChecked || false}
+                      required
                       />
                       <label htmlFor="regulations" className={classes.checkboxLabel}>*Zapoznałem się z regulaminem strony</label>
                   </div>
+                      {state.message === "Uzupełnij dane" && <p className={classes.errorMessage}>{state.message}</p>}
+                      {state.message === "Zaznacz, że zapoznałeś się z regulaminem" && <p className={classes.errorMessage}>{state.message}</p>}
 
                   <p className={classes.btnContainer}>
                     <button disabled={isPending}>{isPending === true ? 'Oczekiwanie' : 'Zarejestruj'}</button>
