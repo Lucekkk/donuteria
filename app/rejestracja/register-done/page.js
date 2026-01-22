@@ -5,8 +5,8 @@ export default function RegisterDone(){
     return(
         <>
             <main className={classes.main}>
-                <h1>Udało ci się zarejestrować. Możesz teraz przejść do sekcji logowania poniżej.</h1>
-                <Link href={'/logowanie'}>Zaloguj</Link>
+                <h1>Udało ci się zarejestrować. Możesz teraz przejść do sekcji logowania.</h1>
+                <Link href={'/logowanie'}>Przejdź do logowania</Link>
             </main>
             
         </>

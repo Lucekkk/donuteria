@@ -4,7 +4,7 @@ import { useActionState } from "react";
 import {registerUser} from '@/lib/actions';
 import classes from './page.module.css';
 
-export default function Rejestracja(){
+export default function Register(){
     const [state, formAction, isPending] = useActionState(registerUser, {message: null, values: {}});
     console.log(state.message);
     return(
@@ -59,8 +59,7 @@ export default function Rejestracja(){
                     />
                      {state.message === 'Hasło musi mieć od 8 do 20 znaków, oraz posiadać jedną cyfrę i jedną, wielką literę' && <p className={classes.errorMessage}>{state.message}</p>}
                   </div>
-                 
-
+              
                   <div className={classes.checkboxContainer}>
                     <input 
                       type="checkbox"
@@ -75,9 +74,9 @@ export default function Rejestracja(){
                       {state.message === "Uzupełnij dane" && <p className={classes.errorMessage}>{state.message}</p>}
                       {state.message === "Zaznacz, że zapoznałeś się z regulaminem" && <p className={classes.errorMessage}>{state.message}</p>}
 
-                  <p className={classes.btnContainer}>
+                  <div className={classes.btnContainer}>
                     <button disabled={isPending}>{isPending === true ? 'Oczekiwanie' : 'Zarejestruj'}</button>
-                  </p>
+                  </div>
                 </form>
               </div>
          </main>
