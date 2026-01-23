@@ -6,7 +6,7 @@ import pluginReactHooks from "eslint-plugin-react-hooks";
 
 export default [
   { files: ["**/*.{js,mjs,cjs,jsx}"] },
-  { languageOptions: { globals: globals.browser } },
+  { languageOptions: { globals: { ...globals.browser, ...globals.node } } },
   pluginJs.configs.recommended,
   {
     ...pluginReact.configs.flat.recommended,
