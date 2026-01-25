@@ -1,8 +1,8 @@
 // import Counter from "@/components/Counter";
 import {getThreeProducts} from "@/app/api/threeProducts/route";
-import classes from "./page.module.css";
 import ThreeProducts from "@/components/products-home/Three-products";
 import { Suspense } from "react";
+import Fallback from "@/components/fallback/Fallback";
 
 
 async function HomeProducts(){
@@ -16,7 +16,7 @@ export default function Home() {
 
   return( 
         
-    <Suspense fallback={<div className={classes.container}><p className={classes.loading}>Oczekiwanie<span className={classes.span}>. . . .</span></p></div>}>
+    <Suspense fallback={<Fallback/>}>
        <HomeProducts/>
     </Suspense>
     
