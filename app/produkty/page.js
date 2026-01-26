@@ -1,10 +1,13 @@
- 
+import Image from 'next/image';
 import classes from './products.module.css';
 import { getAllProducts } from "../api/allProducts/route";
 
 import ProductsGrid from "@/components/products/Products-grid";
 import { Suspense } from 'react';
 import Fallback from '@/components/fallback/Fallback';
+
+import shopLeft from '@/assets/localization/shop1.png';
+import shopRight from '@/assets/localization/shop2.jpg';
 
  export async function ProdsDonuts(){
      const prods = await getAllProducts();
@@ -29,6 +32,31 @@ import Fallback from '@/components/fallback/Fallback';
             <Suspense fallback={<Fallback />}>
              <ProdsDonuts />
             </Suspense>
+
+            <section className={classes.localization}>
+                    <div className={classes.localizationHeader}>
+                        <h1>Nasze lokalizacje</h1>
+                    </div>
+                    <div className={classes.shopsCardContainer}>
+                        <div className={classes.card}>
+                            <div className={classes.ImgContainer}>
+                                <Image src={shopLeft}  alt='shop with donuts' fill/>
+                            </div>
+                            <p>ul. Nowe Osiedla 15</p>
+                                <p>70-226 Łódź</p>
+                                <p>653 298 120</p>
+                        </div>
+
+                        <div className={classes.card}>
+                            <div className={classes.ImgContainer}>
+                                <Image src={shopRight} alt='shop with donuts' fill/>
+                            </div>
+                            <p>ul. Jana Pawła 33/5</p>
+                                <p>08-287 Warszawa</p>
+                                <p>765 345 781</p>
+                        </div>
+                    </div>
+            </section>
        </main>
         
          
