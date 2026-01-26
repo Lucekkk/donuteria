@@ -2,8 +2,8 @@
 import { db } from "@/lib/db";
 
 export async function GET() {
-  const [rows] = await db.query(`SELECT id, login, email, password_hash
-                                 FROM uzytkownicy`);
+  const [rows] = await db.query(`SELECT id, nazwa, cena_brutto, opis, obrazek, opis_obrazka, czas_oczekiwania_na_wykonanie, opakowanie_sup,ilosc_w_opakowaniu, waga, sklad, alergeny, dodatkowe_info
+                                 FROM produkty`);
   return Response.json(rows);
 }
 

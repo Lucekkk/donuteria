@@ -1,9 +1,11 @@
-import ProductsItem from "./ProductsItem";
+/* eslint-disable react/prop-types */
 
-export default function ProductsGrid(prods){
+import ProductsItem from "./ProductsItem";
+import classes from './products-grid.module.css';
+export default function ProductsGrid({prods}){
     return(
-        <ul>
-            {prods.map( prod => (
+        <ul className={classes.ul} id='first'>
+            {prods.map(prod => (
                 <li key={prod.id}>
                     <ProductsItem {...prod} />
                 </li>
