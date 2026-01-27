@@ -1,0 +1,112 @@
+.main{
+    display: flex;
+    width: 90%;
+    margin: 0 auto;
+}
+.cartContainer{
+    width: 60%;
+    
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: clamp(2rem, .7rem + 1.1vw, 1rem + 1.5vw);
+}
+.header a{
+    display: inline-block;
+    color: black;
+    text-decoration: none;
+    font-size: clamp(1rem, .7rem + 1vw, 1rem + 1.3vw);
+}
+.cart{
+    margin: 20px 0;
+}
+.infoBar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 40px;
+    padding: 5px 20px;
+    background-color: #D9D9D9;
+}
+.infoBar p{
+     font-size: clamp(1rem, .7rem + .7vw, 1rem + 1vw);
+}
+.imageContainer{
+    position: relative;
+    width: 75px;
+    height: 75px;
+}
+
+.cartItem{
+    display: flex;
+    justify-content: space-around;
+    padding: 0 30px;
+    margin: 30px 0;
+}
+.titleAndImageContainer{
+     display: flex;
+     align-items: center;
+}
+.prodName{
+    width: 100%;
+    max-width: 140px;
+    margin-left: 30px;
+}
+.prodPrice{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.prodPrice p{
+    font-size: clamp(1rem, .7rem + .7vw, 1rem + 1vw);
+}
+.counterBox{
+    display: flex;
+    align-items: center;
+
+    border: 2px solid #F793AF;
+    padding: 3px 10px;
+    border-radius: 60px;
+    margin-top: 10px;
+}
+.quantityContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(1rem, .7rem + .7vw, 1rem + 1vw);
+}
+.counterButton{
+    border: none;
+    font-size: clamp(1rem, .7rem + .7vw, 1rem + 1vw);
+    cursor: pointer;
+    /* margin: 0 5px; */
+ height: 100%;
+    /* background-color: red; */
+    width: 20px;
+     
+}
+.minus{
+    margin-bottom: 2%;
+    margin-right: 10px;
+   
+}
+
+.plus{
+    margin-left: 10px;
+    
+}
+.quantityParagraph{
+    font-size: medium;
+}
+.itemTotal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1rem, .7rem + .7vw, 1rem + 1vw);
+
+    width: 110px;
+}
+ 
