@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import NavLink from "./Nav-link";
 import Modal from "../modal/Modal";
 import { useAuth } from "@/lib/useAuth";
@@ -8,7 +9,18 @@ import classes from "./Header-main.module.css";
 export default function HeaderMain() {
   const [activeBtn, setActiveBtn] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   const { isAuthenticated, user } = useAuth();
+  const cartItems = useSelector((state) => state.cart.cartData.cart);
+  let cartCounter = 0; 
+
+  cartItems.map(prod => cartCounter += prod.quantity);
+
+  console.log(cartCounter);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 512px)");
@@ -58,7 +70,9 @@ export default function HeaderMain() {
               <NavLink href="/produkty">Nasze produkty</NavLink>
             </li>
             <li>
-              <NavLink href="/koszyk">Koszyk</NavLink>
+              <NavLink href="/koszyk">
+                 Koszyk <div className={classes.cartCounter}>{isClient ? cartCounter : 0}</div>
+              </NavLink>
             </li>
             <li>
               {isAuthenticated && user ? (

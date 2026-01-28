@@ -4,7 +4,7 @@ import ProductsItem from "./ProductsItem";
 import classes from './products-grid.module.css';
 export default function ProductsGrid({prods}){
     return(
-        <ul className={classes.ul} id='first'>
+        <ul className={classes.ul} id='firstProd'>
             {prods.map(prod => (
                 <li key={prod.id}>
                     <ProductsItem {...prod} />

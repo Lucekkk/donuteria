@@ -24,16 +24,16 @@ import shopRight from '@/assets/localization/shop2.jpg';
                         <h1>Chwila słodyczy zaczyna się tutaj...</h1>
                     </div>
                     <div className={classes.linkSection}>
-                        <a href={'#first'} className={classes.link}>dodaj do koszyka na to co masz ochotę i ciesz się smakiem</a>
+                        <a href={'#firstProd'} className={classes.link}>dodaj do koszyka na to co masz ochotę i ciesz się smakiem</a>
                         <p>albo</p>
-                        <a className={classes.link}>odwiedź nasze punkty stacjonarnie i pozwól sobie na słodki moment</a>
+                        <a href={'#localization'} className={classes.link}>odwiedź nasze punkty stacjonarnie i pozwól sobie na słodki moment</a>
                     </div>
             </section>
             <Suspense fallback={<Fallback />}>
              <ProdsDonuts />
             </Suspense>
 
-            <section className={classes.localization}>
+            <section className={classes.localization} id="localization">
                     <div className={classes.localizationHeader}>
                         <h1>Nasze lokalizacje</h1>
                     </div>
