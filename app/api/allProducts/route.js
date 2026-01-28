@@ -2,11 +2,11 @@
 import { db } from "@/lib/db";
 
 export async function GET() {
-  const [rows] = await db.query(`SELECT id, nazwa, cena_brutto, opis, obrazek, opis_obrazka, czas_oczekiwania_na_wykonanie, opakowanie_sup,ilosc_w_opakowaniu, waga, sklad, alergeny, dodatkowe_info
+  const [rows] =
+    await db.query(`SELECT id, nazwa as prodTitle, cena_brutto as price, opis as description, obrazek as image, opis_obrazka as imageDescription, czas_oczekiwania_na_wykonanie as waitingTime, opakowanie_sup as packaging, ilosc_w_opakowaniu as quantityPerPackage, waga as weight, sklad as ingredients, alergeny as allergens, dodatkowe_info as additionalInfo
                                  FROM produkty`);
   return Response.json(rows);
 }
-
 
 // Fetch users from the API; build an absolute URL using env/localhost so Node's fetch accepts it
 export async function getAllProducts() {

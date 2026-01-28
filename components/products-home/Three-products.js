@@ -70,7 +70,7 @@ export default function ThreeProducts({ products }) {
                   key={product.id}
                   className={`${classes.slide} ${"balooFont"}`}
                 >
-                  {product.nazwa}
+                  {product.prodTitle}
                 </h1>
               ))}
             </div>
@@ -86,7 +86,7 @@ export default function ThreeProducts({ products }) {
                   : classes.description
               }
           >
-            {product.opis}
+            {product.description}
           </p>
         ))}
           </div>
@@ -119,8 +119,8 @@ export default function ThreeProducts({ products }) {
                 disabled={isAnimating || prevActive === index}
               >
                 <Image
-                  src={prod.obrazek}
-                  alt={prod.opis_obrazka}
+                  src={prod.image}
+                  alt={prod.imageDescription}
                   priority
                   fill
                 />
@@ -141,8 +141,8 @@ export default function ThreeProducts({ products }) {
               }`}
             >
               <Image
-                src={product.obrazek}
-                alt={product.opis_obrazka}
+                src={product.image}
+                alt={product.imageDescription}
                 priority
                 fill
               />

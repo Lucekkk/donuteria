@@ -15,15 +15,15 @@ export default function Koszyk() {
     setMounted(true);
   }, []);
 
-  const handleRemove = (idProduktu) => {
-    dispatch(cartActions.removeProduct(idProduktu));
+  const handleRemove = (idProduct) => {
+    dispatch(cartActions.removeProduct(idProduct));
   };
 
-  const handleQuantityChange = (idProduktu, symbol) => {
+  const handleQuantityChange = (idProduct, symbol) => {
     dispatch(
       cartActions.updateQuantity({
-        idProduktu,
-        symbol: symbol,
+        idProduct,
+        symbol,
       }),
     );
   };
@@ -61,46 +61,46 @@ export default function Koszyk() {
                 </div>
                 <div className={classes.cartItems}>
                     {cart.map(prod => (
-                        <div key={prod.idProduktu} className={classes.cartItem}>
+                        <div key={prod.idProduct} className={classes.cartItem}>
                             <div className={classes.titleAndImageContainer}>
                                 <div className={classes.imageContainer}>
                                     <Image
-                                    src={prod.obrazek}
-                                    alt={prod.nazwaProduktu}
+                                    src={prod.image}
+                                    alt={prod.prodTitle}
                                     fill
                                     
                                 />
                                 </div>
                                 <div className={classes.prodName}>
-                                    <h3>{prod.nazwaProduktu}</h3>
+                                    <h3>{prod.prodTitle}</h3>
                                 </div>
                             </div>
                             <div className={classes.prodPrice}>
-                                 <p>{prod.cena} zł</p>
+                                 <p>{prod.price} zł</p>
                             </div>
                             <div className={classes.quantityContainer}> 
                                     <div className={classes.counterBox}>
                                         <button 
                                             className={`${classes.counterButton} ${classes.minus}`} 
-                                            onClick={() => handleQuantityChange(prod.idProduktu, 'minus')}
+                                            onClick={() => handleQuantityChange(prod.idProduct, 'minus')}
                                         >-
                                         </button>
                                         <p className={classes.quantity}>{prod.quantity}</p>
                                         <button 
                                             className={`${classes.counterButton} ${classes.plus}`}
-                                            onClick={() => handleQuantityChange(prod.idProduktu, 'plus')}
+                                            onClick={() => handleQuantityChange(prod.idProduct, 'plus')}
                                             >+
                                         </button>
                                     </div>
                                     <p className={classes.quantityParagraph}>szt.</p>
                             </div>
                             <div className={classes.itemTotal}>
-                                <p>{(prod.cena * prod.quantity).toFixed(2)} zł</p>
+                                <p>{(prod.price * prod.quantity).toFixed(2)} zł</p>
                             </div>
                             <div className={classes.removeProdContainer}>
                                 <button
                                 className={classes.removeBtn}
-                                onClick={() => handleRemove(prod.idProduktu)}
+                                onClick={() => handleRemove(prod.idProduct)}
                                 >
                                 Usuń
                                 </button>    
