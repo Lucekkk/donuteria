@@ -51,7 +51,13 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    filter: brightness(85%);
+    transition: filter 0.2s linear;
 }
+.productBtnContainer button:hover{
+    filter: brightness(1);
+}
+
 .productBtnContainer button span{
     position: relative;
     display: inline-block;

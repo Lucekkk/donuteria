@@ -16,6 +16,17 @@
   font-size: clamp(0.8rem, 1rem + 1.35vw, 2rem + 2vw);
   padding: 30px 0;
 }
+.cartCounter{
+  border: 2px solid #EA7BBE;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  text-align: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;     
+}
 .nav {
   flex-basis: 70%;
 
@@ -42,6 +53,7 @@
 .nav ul li {
   text-align: center;
   width: 100%;
+  margin: 0 10px;
 }
 /* PORPAWIC WYGLĄD HAMBURGERA */
 
@@ -101,6 +113,20 @@
   transform: translateY(-18px) rotate(-45deg);
 }
 
+@media(max-width: 810px){
+    .cartCounter{
+   
+  width: 23px;
+  height: 23px;
+   
+}
+
+.nav ul li {
+  
+  margin:auto;
+}
+}
+
 @media(max-width: 512px){
   .header{
     justify-content: space-around;
@@ -115,4 +141,6 @@
   .nav{
     flex-basis: 30%;
   }
+
+
 }

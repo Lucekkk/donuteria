@@ -40,14 +40,14 @@ export default function ProductsItem({
   let backgroundColor = null;
   let boxShadow = null;
   if (id === 1) {
-    backgroundColor = "#F793AF";
-    boxShadow = "-6px 0 10px -3px #F793AF, 0 -6px 10px -3px #F793AF";
+    backgroundColor = "#EA7BBE";
+    boxShadow = "-6px 0 10px -3px #EA7BBE, 0 -6px 10px -3px #EA7BBE";
   } else if (id === 3) {
-    backgroundColor = "#78B5CF";
-    boxShadow = "-6px 0 10px -3px #78B5CF, 0 -6px 10px -3px #78B5CF";
+    backgroundColor = "#4ABAF0";
+    boxShadow = "-6px 0 10px -3px #4ABAF0, 0 -6px 10px -3px #4ABAF0";
   } else if (id === 4) {
-    backgroundColor = "#C9ADA0";
-    boxShadow = "-6px 0 10px -3px #C9ADA0, 0 -6px 10px -3px #C9ADA0";
+    backgroundColor = "#974F2D";
+    boxShadow = "-6px 0 10px -3px #974F2D, 0 -6px 10px -3px #974F2D";
   }
 
   return (

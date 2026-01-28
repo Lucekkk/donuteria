@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 "use client";
+import { useDispatch } from "react-redux";
+import { cartActions } from "@/store/shopping-cart-slice";
 import Image from "next/image";
 import classes from "./Three-products.module.css";
 import { useState, useEffect } from "react";
@@ -15,10 +17,22 @@ export default function ThreeProducts({ products }) {
   const [linkBackgroundColor, setLinkBackgroundColor] = useState("#EA7BBE");
   const [bg1, setBg1] = useState("rgba(240, 77, 104, 0.55)");
   const [bg2, setBg2] = useState("rgba(255, 255, 255, 1)");
-
+  const [prodInfo, setProdInfo] = useState({
+        idProduct: products[0].id,
+        prodTitle: products[0].prodTitle,
+        price: products[0].price,
+        image: products[0].image,
+        imageDescription: products[0].imageDescription,
+  })
+  
+  const dispatch = useDispatch();
+ 
+  const orderHandler = () =>{
+    dispatch(cartActions.addProduct(prodInfo))
+  }
  
 
-  const donutHandler = (newIndex) => {
+  const donutHandler = (newIndex, prod) => {
     if (isAnimating) return; // Zablokuj klikanie podczas animacji
 
     setIsAnimating(true);
@@ -38,6 +52,15 @@ export default function ThreeProducts({ products }) {
       setBg1("rgba(151, 79, 45, 0.55)");
       setBg2("rgba(255, 255, 255, 1)");
     }
+
+    setProdInfo({
+        idProduct: prod.id,
+        prodTitle: prod.prodTitle,
+        price: prod.price,
+        image: prod.image,
+        imageDescription: prod.imageDescription,
+    })
+     
   };
 
   // Uaktualnij prevActive po tym jak animacja się skończy (1s)
@@ -93,13 +116,14 @@ export default function ThreeProducts({ products }) {
 
           <div className={classes.links}>
             <Link
-              href="/"
+              onClick={orderHandler}
+              href="/koszyk"
               style={{ backgroundColor: `${linkBackgroundColor}` }}
             >
               Zamów teraz
             </Link>
             <Link
-              href="/"
+              href="/produkty"
               style={{ backgroundColor: `${linkBackgroundColor}` }}
             >
               Więcej
@@ -110,7 +134,7 @@ export default function ThreeProducts({ products }) {
             {products.map((prod, index) => (
               <button
                 key={prod.id}
-                onClick={() => donutHandler(index)}
+                onClick={() => donutHandler(index, prod)}
                 className={
                   index === active
                     ? `${classes.donutsBtn} ${classes.active}`

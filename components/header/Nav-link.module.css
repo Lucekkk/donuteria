@@ -1,5 +1,7 @@
 .link{
-    display: inline-block;
+    display: flex;
+    justify-content: space-evenly;
+    /* display: inline-block; */
     max-width: 100%;
     line-height: 1.7;
     height: 100%;
