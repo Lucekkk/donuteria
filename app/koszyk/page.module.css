@@ -32,7 +32,7 @@
 .main{
     display: flex;
     width: 90%;
-    margin: 0 auto;
+    margin: 0 auto 100px auto;
 }
 .cartContainer{
     width: 60%;
@@ -63,6 +63,18 @@
 }
 .infoBar p{
      font-size: clamp(1rem, .7rem + .7vw, 1rem + 1vw);
+}
+.productTitle{
+    margin-right: 15%;
+}
+.productPrice{
+    margin-right: 2%;
+}
+.productSum{
+    margin-right: -3%;
+}
+.productRemove{
+    margin-right: -2%;
 }
 .imageContainer{
     position: relative;
@@ -133,6 +145,17 @@
 .quantityParagraph{
     font-size: medium;
 }
+.removeProdContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.removeBtn{
+    
+    border: none;
+    cursor: pointer;
+    font-size: clamp(1rem, .7rem + .7vw, 1rem + 1vw);
+}
 .itemTotal{
     display: flex;
     align-items: center;
@@ -141,4 +164,132 @@
 
     width: 110px;
 }
+
+.summaryContainer{
+    margin-left: 40px;
+}
+
+.headerSummary{
+    display: flex;
+    justify-content: end;
+    font-size: clamp(2rem, .7rem + 1.1vw, 1rem + 1.5vw);
+}
+
+.discountBox{
+    border-radius: 14px;
+    padding: 30px;
+    margin: 20px 0;
+    background-color: #D9D9D9;
+}
+
+.discountBox p{
+    font-size: clamp(1.1rem, .6vw + .75rem, 1.25rem);
+    margin-bottom: 20px;
+}
+
+.inputContainer input, .inputContainer button{
+    font-size: clamp(.9rem, .6vw + .75rem, 1.25rem);
+}
+.inputContainer input, .inputContainer button{
+    padding: 10px 15px;
+    border-radius: 60px;
+    border: none;
+    outline: none;
+}
+
+.spanDiscount{
+    margin-left: 10px;
+}
+
+.inputContainer button{
+   
+    background-color: #818181;
+    color: snow;
+     margin-left: 10px;
+     cursor: pointer;
+}
+
+.inputContainer button:hover{
+        background-color: #575656;
+}
+
+.discountSum p{
+    display: flex;
+    justify-content: space-between;
+    margin: 40px 0 0 0;
+}
+
+.linksContainer{
+    display: flex;
+    height: 220px;
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+}
  
+.linksContainer a{
+    font-size: clamp(1rem, .6vw + .75rem, 1.25rem);
+    margin-top: 20px;
+    color: black;
+    text-decoration: none;
+}
+
+.loginLink{
+    padding: 5px 15px;
+    border: 2px solid #B9B7B7;
+    border-radius: 10px;
+    box-shadow: 0 4px  4px 0 #B9B7B7;
+}
+
+.orderLink{
+    padding: 10px 15px;
+    border-radius: 25px;
+    background-color: #D9D9D9;
+}
+
+@media(max-width: 1320px){
+    .main{
+        flex-direction: column;
+        align-items: center;
+    }
+    .cartContainer{
+        width: 100%;
+    }
+    .summaryContainer{
+        max-width: 500px;
+    }
+
+    
+}
+
+@media(max-width: 800px){
+    .imageContainer{
+    
+    width: 35px;
+    height: 35px;
+}
+.cartItem{
+    padding: 0;
+}
+.prodName{
+    margin-left: 10px;
+}
+.productTitle{
+    margin-right: 0;
+}
+.minus{
+    margin-right: 0;
+}
+.plus{
+    margin-left: 0;
+}
+.headerSummary{ 
+    justify-content: center;
+}
+.inputContainer button{
+    margin-top: 20px;
+}
+.summaryContainer{
+    margin: auto;
+}
+}
