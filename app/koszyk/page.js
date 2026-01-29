@@ -1,4 +1,5 @@
 "use client";
+import { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { cartActions } from "@/store/shopping-cart-slice";
 import Image from "next/image";
@@ -10,6 +11,9 @@ export default function Koszyk() {
   const cart = useSelector((state) => state.cart.cartData.cart);
   const dispatch = useDispatch();
   const [mounted, setMounted] = useState(false);
+  const [discountPrice, setDiscountPrice] = useState(null);
+  const [discountCode, setdiscountCode] = useState('021445');
+  const inputCode = useRef();
 
   useEffect(() => {
     setMounted(true);
@@ -30,10 +34,23 @@ export default function Koszyk() {
 
 
 
-//   const totalPrice = cart.reduce(
-//     (sum, item) => sum + item.cena * item.quantity,
-//     0,
-//   );
+  let totalPrice = cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0,
+  );
+
+const discountHandler = () =>{
+    if(inputCode.current.value === discountCode){
+        
+        totalPrice = (totalPrice  * 0.9).toFixed(2);
+        setDiscountPrice(totalPrice);
+        setdiscountCode('already used');
+    }else{
+        return
+    }
+     
+    
+}
 
   return (
     <main className={classes.main}>
@@ -49,15 +66,15 @@ export default function Koszyk() {
         <div className={classes.cartContainer}>
             <div className={classes.header}>
                 <Link href='/produkty'>Kontynuuj zakupy</Link>
-                <h2>Koszyk</h2>
+                <h3>Koszyk</h3>
             </div>
             <div className={classes.cart}>
                 <div className={classes.infoBar}>
-                    <p>Produkt</p>
-                    <p>Cena</p>
+                    <p className={classes.productTitle}>Produkt</p>
+                    <p className={classes.productPrice}>Cena</p>
                     <p>Ilość</p>
-                    <p>Suma</p>
-                    <p>Usuń</p>
+                    <p className={classes.productSum}>Suma</p>
+                    <p className={classes.productRemove}>Usuń</p>
                 </div>
                 <div className={classes.cartItems}>
                     {cart.map(prod => (
@@ -102,7 +119,7 @@ export default function Koszyk() {
                                 className={classes.removeBtn}
                                 onClick={() => handleRemove(prod.idProduct)}
                                 >
-                                Usuń
+                                X
                                 </button>    
                             
                             </div> 
@@ -111,16 +128,50 @@ export default function Koszyk() {
                 </div>
             </div>
         </div>
-        <div className={classes.summaryContainer}></div>
+        <div className={classes.summaryContainer}>
+            <div className={classes.headerSummary}>
+                <h3>Podsumowanie</h3>
+            </div>
+
+            <div className={classes.discountBox}>
+                    <p>Mam kupon rabatowy</p>
+                    <div className={classes.inputContainer}>
+                        <input placeholder="Wpisz kod" ref={inputCode}/>
+                        <button onClick={discountHandler}>Zastosuj</button>
+                    </div>
+                    <div className={classes.discountSum}>
+                        <p>Łączna wartość: 
+                                <strong>
+                                    {discountPrice === null ? 
+                                        `${totalPrice.toFixed(2)}zł` : 
+                                        ( <>
+                                            <strike>
+                                                {totalPrice.toFixed(2)} zł
+                                            </strike> 
+                                            <span className={classes.spanDiscount}>
+                                                {discountPrice} zł
+                                            </span> 
+                                        </>
+                                        )} 
+                                </strong>
+                             
+                        </p>
+                         
+                    </div>
+
+            </div>  
+
+            <div className={classes.linksContainer}>
+                <Link href='/logowanie' className={classes.loginLink}>Zaloguj się i zbieraj wirtualne donuty </Link>
+                <Link href='' className={classes.orderLink}>Zamawiam bez logowania</Link>
+            </div>
+
+        </div>
         </>
                 )}
     </main>
    
-//           <div className={classes.cartSummary}>
-//             <div className={classes.summaryRow}>
-//               <span>Łączna wartość:</span>
-//               <strong>{totalPrice.toFixed(2)} zł</strong>
-//             </div>
+ 
 
  
   );
