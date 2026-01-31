@@ -19,6 +19,8 @@ const loadCartFromStorage = () => {
 const initialValues = {
   cartData: {
     cart: loadCartFromStorage(),
+    totalPrice: null,
+    
   },
 };
 
@@ -103,6 +105,11 @@ const cartSlice = createSlice({
         }
      
     },
+    updateTotalPrice:(state, action) => {
+        state.cartData.totalPrice = action.payload;
+        
+    }
+    
  
   },
 });

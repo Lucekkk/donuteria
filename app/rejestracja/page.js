@@ -6,7 +6,7 @@ import classes from './page.module.css';
 
 export default function Register(){
     const [state, formAction, isPending] = useActionState(registerUser, {message: null, values: {}});
-    console.log(state.message);
+     
     return(
         <>
         <main className={classes.main}>
