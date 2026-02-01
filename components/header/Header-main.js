@@ -16,7 +16,7 @@ export default function HeaderMain() {
 
   cartItems.map(prod => cartCounter += prod.quantity);
 
-  console.log(cartCounter);
+   ;
 
   useEffect(() => {
     setIsClient(true);

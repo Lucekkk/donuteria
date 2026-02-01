@@ -2,16 +2,20 @@
 
 import { useSelector } from "react-redux";
 import Link from "next/link";
-import { useActionState, useState, useEffect } from "react";
+import { useActionState, useState, useEffect, useTransition } from "react";
 import { cartSummary } from "@/lib/actions";
 import classes from "./page.module.css";
 
 export default function Summary() {
-  
   const [state, formAction, isPending] = useActionState(cartSummary, {
     message: null,
     values: {},
   });
+
+  const [isTransitioning, startTransition] = useTransition();
+
+  console.log(state);
+
   const [mounted, setMounted] = useState(false);
   const cart = useSelector((state) => state.cart.cartData.cart);
   const totalPriceFromRedux = useSelector(
@@ -44,6 +48,18 @@ export default function Summary() {
     setTotalPrice(prodsPrice + newDeliveryPrice);
   };
 
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+
+    formData.append("totalPrice", totalPrice);
+    formData.append("cart", JSON.stringify(cart));
+
+    startTransition(() => {
+      formAction(formData);
+    });
+  };
+
   return (
     <main className={classes.main}>
       <div className={classes.formContainer}>
@@ -51,7 +67,7 @@ export default function Summary() {
           <Link href="/koszyk">Powrót do koszyka</Link>
         </div>
 
-        <form action={formAction}>
+        <form onSubmit={handleFormSubmit}>
           <div className={classes.userData}>
             <h2>Dane</h2>
             <div className={classes.userDataInputsBox}>
