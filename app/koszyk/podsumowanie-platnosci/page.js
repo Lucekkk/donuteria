@@ -14,7 +14,10 @@ export default function Summary() {
 
   const [isTransitioning, startTransition] = useTransition();
 
-  console.log(state);
+  // console.log(state);
+
+  const userId = useSelector((state) => state.auth.user?.userId ?? null);
+  
 
   const [mounted, setMounted] = useState(false);
   const cart = useSelector((state) => state.cart.cartData.cart);
@@ -54,6 +57,9 @@ export default function Summary() {
 
     formData.append("totalPrice", totalPrice);
     formData.append("cart", JSON.stringify(cart));
+    if (userId) {
+      formData.append("userId", userId);
+    }
 
     startTransition(() => {
       formAction(formData);
