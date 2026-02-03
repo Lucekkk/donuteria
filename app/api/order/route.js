@@ -6,7 +6,50 @@ export async function POST(request) {
   try {
     const clientOrder = await request.json();
 
-    console.log(clientOrder)
+    console.log(clientOrder);
+
+    
+    await db.query(
+      `INSERT INTO klienci(id, id_uzytkownik, imie, nazwisko, email, telefon, numer_konta, bank) 
+      VALUES(?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        clientOrder.clientID,
+        clientOrder.userId,
+        clientOrder.name,
+        clientOrder.surname,
+        clientOrder.email,
+        clientOrder.phoneNumber,
+        clientOrder.accountNumber,
+        clientOrder.bankName,
+      ],
+    );
+
+    
+    await db.query(
+      `INSERT INTO adresy(id, id_klient, ulica_i_numer_domu_lub_mieszkania, miejscowosc, kod_pocztowy)
+      VALUES(?, ?, ?, ?, ?)`,
+      [
+        clientOrder.addressID,
+        clientOrder.clientID,
+        clientOrder.street,
+        clientOrder.town,
+        clientOrder.postalCode,
+      ],
+    );
+ 
+    const [rows] = await db.query(
+      `INSERT INTO zamowienia(id, id_klient, id_adres, sposob_platnosci, sposob_dostawy, stan_zamowienia, data_wystawienia, data_zakonczenia_dostawy_towarów, data_platnosci, calkowita_cena_do_zaplaty, numer_faktury) 
+      VALUES(?, ?, ?, ?, ?, 'wysłane', CURRENT_DATE(), null, CURRENT_DATE(), ?, ?)`,
+      [
+        clientOrder.orderID,
+        clientOrder.clientID,
+        clientOrder.addressID,
+        clientOrder.payMethod,
+        clientOrder.deliveryMethod,
+        clientOrder.totalPrice,
+        clientOrder.invoiceNumber,
+      ],
+    );
 
     // const [rows] = await db.query(
     //   `INSERT INTO uzytkownicy(login, email, password_hash, data_utworzenia, rola)
