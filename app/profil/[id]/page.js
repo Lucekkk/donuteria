@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 import { getCurrentUser } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import LogoutButton from "@/components/LogoutButton";
+ 
 import ProfileAuthRefresh from "@/components/ProfileAuthRefresh";
+ 
 
 export default async function UserProfile({ params }) {
   const { id } = await params;
@@ -22,13 +23,17 @@ export default async function UserProfile({ params }) {
 
   return (
     <>
-      <ProfileAuthRefresh />
-      <h1>Udało ci się zalogować!</h1>
-      <p>Twoje ID: {id}</p>
-      <p>Login: {currentUser.login}</p>
-      <p>Email: {currentUser.email}</p>
+    <div>
+    <ProfileAuthRefresh />
+          <h1>Udało ci się zalogować!</h1>
+          <p>Twoje ID: {id}</p>
+          <p>Login: {currentUser.login}</p>
+          <p>Email: {currentUser.email}</p>
+        
 
-      <LogoutButton />
+        
+    </div>
+     
     </>
   );
 }

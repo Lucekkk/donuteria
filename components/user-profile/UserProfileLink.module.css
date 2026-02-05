@@ -1,0 +1,12 @@
+.linksBox{
+     display: flex;
+    flex-direction: column;
+}
+.link{
+    display: flex;
+}
+.imgBox{
+    position: relative;
+    width: 40px;
+    height: 40px;
+}

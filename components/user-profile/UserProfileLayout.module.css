@@ -1,0 +1,13 @@
+.aside{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    min-width: 400px;
+    width: 20%;
+    height: 70vh;
+    padding: auto;  
+    background-color: red;
+}
+
+ 

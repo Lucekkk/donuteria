@@ -1,8 +1,13 @@
 "use client";
 
+import classes from './LogoutButton.module.css';
+import Image from 'next/image';
+
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { clearAuth } from "@/store/auth-slice";
+
+import logoutImg from '@/assets/userPanelIcons/logout.png';
 
 export default function LogoutButton() {
   const router = useRouter();
@@ -27,9 +32,11 @@ export default function LogoutButton() {
   return (
     <button
       onClick={handleLogout}
-      style={{ marginTop: "20px", padding: "10px 20px", cursor: "pointer" }}
+      className={classes.logoutButton}
     >
-      Wyloguj się
+      <Image  src={logoutImg} fill/>
+      <span>Wyloguj się</span>
+      
     </button>
   );
 }
