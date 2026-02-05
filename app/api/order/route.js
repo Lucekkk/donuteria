@@ -37,7 +37,7 @@ export async function POST(request) {
       ],
     );
  
-    const [rows] = await db.query(
+     await db.query(
       `INSERT INTO zamowienia(id, id_klient, id_adres, sposob_platnosci, sposob_dostawy, stan_zamowienia, data_wystawienia, data_zakonczenia_dostawy_towarów, data_platnosci, calkowita_cena_do_zaplaty, numer_faktury) 
       VALUES(?, ?, ?, ?, ?, 'wysłane', CURRENT_DATE(), null, CURRENT_DATE(), ?, ?)`,
       [
@@ -51,6 +51,14 @@ export async function POST(request) {
       ],
     );
 
+    for(let i = 0; i < clientOrder.cart.length; i++ ){
+
+    const [rows] = await db.query(`
+      INSERT INTO produkty_w_zamowieniu(id, id_zamowienia, id_produktu, ilosc) 
+      VALUES (?, ?, ?, ?);`,
+      [clientOrder.productsInCartID + i, clientOrder.orderID, clientOrder.cart[i].idProduct, clientOrder.cart[i].quantity],
+    );
+}
     // const [rows] = await db.query(
     //   `INSERT INTO uzytkownicy(login, email, password_hash, data_utworzenia, rola)
     //    VALUES(?, ?, ?, CURRENT_DATE(), 'user')`,

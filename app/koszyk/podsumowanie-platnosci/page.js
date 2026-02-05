@@ -73,9 +73,10 @@ export default function Summary() {
           <Link href="/koszyk">Powrót do koszyka</Link>
         </div>
 
-        <form onSubmit={handleFormSubmit}>
+        <form onSubmit={handleFormSubmit} className={classes.form}>
+        <div className={classes.leftPanel}>
           <div className={classes.userData}>
-            <h2>Dane</h2>
+            <h2 className={classes.header}> <p>1</p>Dane</h2>
             <div className={classes.userDataInputsBox}>
               <div className={classes.inputBox}>
                 <input
@@ -156,10 +157,14 @@ export default function Summary() {
                 />
               </div>
             </div>
+            <div className={classes.error}>{state.message === 'Nieodpowiednia długość znaków' ?  state.message : null}</div>
+            <div className={classes.error}>{state.message === 'Wpisz poprawny email' ?  state.message : null}</div>
+            <div className={classes.error}>{state.message === 'Wpisz poprawny numer telefonu' ?  state.message : null}</div>
+            <div className={classes.error}>{state.message === 'Wpisz poprawny kod pocztowy' ?  state.message : null}</div>
           </div>
 
           <div className={classes.deliveryMethod}>
-            <h2>Dostawa</h2>
+            <h2 className={classes.header}><p>2</p>Dostawa</h2>
             <div className={classes.deliveryMethodInputsBox}>
               <div className={classes.labelsAndInputsDeliveryBox}>
                 <input
@@ -232,7 +237,7 @@ export default function Summary() {
           </div>
 
           <div className={classes.payMethod}>
-            <h2>Płatność</h2>
+            <h2 className={classes.header}><p>3</p>Płatność</h2>
             <div className={classes.payMethodInputsBox}>
               <div className={classes.labelsAndInputsPayBox}>
                 <input
@@ -240,7 +245,7 @@ export default function Summary() {
                   id="bankTransfer"
                   name="payMethod"
                   defaultChecked={state.values?.payMethod || false}
-                  value="bankTransfer"
+                  value="Przelew bankowy"
                   // required
                 />
                 <label htmlFor="bankTransfer">Przelew bankowy</label>
@@ -271,19 +276,18 @@ export default function Summary() {
               </div>
             </div>
           </div>
-
+          </div>
+          <div className={classes.rightPanel}>
           <div className={classes.summaryBox}>
-            <h2>Podsumowanie</h2>
+            <h2 className={classes.headerSummary}>Podsumowanie</h2>
             <div className={classes.productsPriceBox}>
-              <p>
-                Cena produktów: {mounted ? prodsPrice.toFixed(2) : "0.00"} zł
-              </p>
+              <p> Cena produktów: </p>  <p>{mounted ? prodsPrice.toFixed(2) : "0.00"} zł</p>
             </div>
             <div className={classes.deliveryCostBox}>
-              <p>Cena przesyłki: {deliveryPrice.toFixed(2)} zł</p>
+              <p>Cena przesyłki: </p> <p>{deliveryPrice.toFixed(2)} zł</p>
             </div>
             <div className={classes.totalCostBox}>
-              <p>Suma: {mounted ? totalPrice.toFixed(2) : "0.00"} zł</p>
+              <strong>Suma: </strong> <strong>{mounted ? totalPrice.toFixed(2) : "0.00"} zł </strong>
             </div>
           </div>
 
@@ -315,9 +319,12 @@ export default function Summary() {
             </div>
           </div>
 
+          <div className={classes.error}>{state.message === 'Uzupełnij dane' ?  state.message : null}</div>
+          
           <div className={classes.orderBtnBox}>
             <button>ZAMÓW I ZAPŁAĆ</button>
           </div>
+        </div>
         </form>
       </div>
     </main>

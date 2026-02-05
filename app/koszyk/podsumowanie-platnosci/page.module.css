@@ -1,0 +1,179 @@
+.main{
+    margin: 0 auto;
+    width: 90%;
+    margin-bottom: 100px;
+}
+.goBackLinkContainer{
+    margin-bottom: 50px;
+}
+.goBackLinkContainer a{
+    display: block;
+    font-size: clamp(2rem, .7rem + 1vw, 1rem + 1.3vw);
+    text-decoration: none;
+    color: black;
+}
+.form{
+    display: flex;
+}
+.leftPanel, .rightPanel{
+    width: 100%;
+    
+}
+.rightPanel{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.header{
+    display: flex;
+    font-size: clamp(2rem, .7rem + 1.1vw, 1rem + 1.5vw);
+     margin: 40px 0;
+}
+.header p{
+     
+    margin-right: 20px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #D9D9D9;
+    text-align: center;
+}
+.userDataInputsBox{
+    display: grid;
+    gap: 2rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(300px, .3fr));
+    margin:0 70px;
+}
+
+.inputBox{
+    max-width: 260px;
+}
+
+.inputBox input{
+    width: 100%;
+    font-size: clamp(1.1rem, .6vw + .75rem, .6vw + 1.25rem);
+    background-color: #0000;
+    border: 2px solid #b8b4b4;
+    border-radius: 35px;
+    outline: none;
+    height: 45px;
+    padding: 5px 5px 5px 15px
+}
+
+.deliveryMethodInputsBox, .payMethodInputsBox{
+    padding: 40px;
+    margin:0 70px;
+     background-color: #E4E1E1;
+     max-width: 500px;
+     border-radius: 40px;
+     box-shadow: 0 4px 7px 2px rgba(144, 144, 144, 0.683);
+}
+.labelsAndInputsDeliveryBox, .labelsAndInputsPayBox{
+    display: flex;
+    font-size: clamp(1.1rem, .6vw + .75rem, .6vw + 1.25rem);
+    margin-bottom: 15px;
+     
+}
+.deliveryMethodInputsBox input, .labelsAndInputsPayBox input{
+    cursor: pointer;
+}
+
+.labelsAndInputsDeliveryBox label, .labelsAndInputsPayBox label{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.summaryBox{
+    width: 100%;
+    max-width: 500px;
+    padding: 20px 40px;
+    border-radius: 40px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 7px 2px rgba(144, 144, 144, 0.683);
+    background-color: #E4E1E1;
+}
+.headerSummary{
+    font-size: clamp(2rem, .7rem + 1.1vw, 1rem + 1.5vw);
+    margin-bottom: 20px;
+}
+
+.summaryBox div{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.summaryBox div p, .summaryBox div strong{
+        font-size: clamp(1.1rem, 0.75rem + 0.6vw, 1.25rem + 0.6vw);
+        margin-bottom: 20px;
+}
+
+.summaryBox div p span{
+    display: inline-block;
+}
+.inputAndLabelsRegulationsBox{
+    width: 100%;
+    max-width: 610px;
+    font-size: clamp(1.1rem, 0.75rem + 0.6vw, 1.25rem + 0.6vw);
+    margin: 30px 0;
+     
+}
+
+.inputAndLabelsRegulationsBox input{
+    margin-right: 20px;
+     cursor: pointer;
+}
+
+.inputAndLabelsRegulationsBox label{
+    cursor: pointer;
+}
+
+.orderBtnBox button{
+    background-color: #E4E1E1;
+    padding: 30px 40px;
+    cursor: pointer;
+    border: none;
+    color: black;
+    border-radius: 20px;
+    font-size: clamp(1.1rem, 0.75rem + 0.6vw, 1.25rem + 0.6vw);
+     box-shadow: 0 4px 7px 2px rgba(144, 144, 144, 0.683);
+     margin-top: 20px;
+}
+
+.orderBtnBox button:hover{
+    background-color: #b5b5b5;
+        
+}
+
+.error{
+    margin: 20px 0;
+    text-align: center;
+    color: red;
+     font-size: clamp(1.1rem, 0.75rem + 0.6vw, 1.25rem + 0.6vw);
+}
+
+
+
+@media (max-width: 1024px){
+    .form{
+        flex-direction: column;
+    }
+    .leftPanel{
+        margin-bottom: 100px;
+    }
+    .userData{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .userDataInputsBox, .deliveryMethodInputsBox, .payMethodInputsBox{
+        margin: auto;
+    }
+    .inputBox{
+        margin: 0 auto;
+    }
+}
