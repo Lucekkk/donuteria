@@ -30,13 +30,13 @@ export default function LogoutButton() {
   };
 
   return (
-    <button
-      onClick={handleLogout}
-      className={classes.logoutButton}
-    >
-      <Image  src={logoutImg} fill/>
-      <span>Wyloguj się</span>
-      
-    </button>
+    <div className={classes.buttonsContainer} onClick={handleLogout}>
+      <div  
+        className={classes.logoutButtonImg}
+      >
+        <Image  src={logoutImg} alt="logout icon" fill/>  
+      </div>
+        <span>Wyloguj się</span>
+    </div>
   );
 }

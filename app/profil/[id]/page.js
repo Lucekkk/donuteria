@@ -1,15 +1,26 @@
+// 'use client';
 /* eslint-disable react/prop-types */
 import { getCurrentUser } from "@/lib/auth";
 import { redirect } from "next/navigation";
+import classes from './page.module.css';
  
 import ProfileAuthRefresh from "@/components/ProfileAuthRefresh";
+import { getUser } from "@/app/api/getUser/route";
+import Link from "next/link";
  
 
 export default async function UserProfile({ params }) {
   const { id } = await params;
+  let completeDataInfo = null;
 
   // Get current authenticated user
   const currentUser = await getCurrentUser();
+
+  const clientData = await getUser(currentUser.userId);
+
+  console.log(clientData);
+  console.log(currentUser);
+
 
   // This shouldn't happen due to middleware, but as a safety check
   if (!currentUser) {
@@ -20,19 +31,54 @@ export default async function UserProfile({ params }) {
   if (currentUser.userId.toString() !== id) {
     redirect(`/profil/${currentUser.userId}`);
   }
+  if(
+    !clientData[0]?.name ||
+    !clientData[0]?.surname ||
+    !clientData[0]?.street ||
+    !clientData[0]?.postalCode ||
+    !clientData[0]?.town ||
+    !clientData[0]?.phoneNumber
+  ){
+    completeDataInfo = <p>Uzupełnij resztę, brakujących danych.</p>;
+  }
 
+  //  console.log(currentUser)
   return (
     <>
-    <div>
-    <ProfileAuthRefresh />
-          <h1>Udało ci się zalogować!</h1>
-          <p>Twoje ID: {id}</p>
-          <p>Login: {currentUser.login}</p>
-          <p>Email: {currentUser.email}</p>
+    <main className={classes.main}>
+      <ProfileAuthRefresh />
+      <h1>Witaj, {currentUser.login}!</h1>    
         
+      <div className={classes.userDataBox}>
+        <div className={classes.dataContainer}>
+          <h2>Dane personalne:</h2>
+          <h2>Adres: </h2>
+        </div>
+
+        <div className={classes.dataContainer}>
+          <p>{clientData[0]?.name} {clientData[0]?.surname}</p>
+          <p className={classes.rightText}> ul. {clientData[0]?.street}</p>
+        </div>
+
+        <div className={classes.dataContainer}>
+          <p>Email: {currentUser.email}</p>
+          <p className={classes.rightText}>{clientData[0]?.postalCode} {clientData[0]?.town}</p>
+        </div>
+
+        <div className={classes.dataContainer}>
+          <p>Numer telefonu: {clientData[0]?.phoneNumber}</p>
+           
+        </div>
+
+        <div className={classes.linkContainer}>
+          <Link href={`/profil/${currentUser.userId}/dane-personalne`}>Edytuj dane</Link>
+        </div>
+        {completeDataInfo}
+      </div>
+
 
         
-    </div>
+    </main>
      
     </>
   );

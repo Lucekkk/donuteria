@@ -1,3 +1,31 @@
-.logoutButton{
+.buttonsContainer{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 10px;
+    padding: 5px 10px;
+     border-radius: 10px;
+}
+
+.buttonsContainer:hover{
+    
+    background-color: rgba(0, 0, 0, 0.273);
+ 
+}
+
+  .logoutButtonImg{
     position: relative;
+     
+    
+    cursor: pointer;
+}
+
+.logoutButton{
+    font-size: clamp(.9rem, .6vw + .75rem, .9rem);
+}
+
+.logoutButtonImg{
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
 }

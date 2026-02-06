@@ -1,7 +1,7 @@
 import { getCurrentUser } from "@/lib/auth";
-import Link from "next/link";
+ 
 import classes from "./UserProfileLayout.module.css";
-import Image from "next/image";
+ 
 
 import userImg from '@/assets/userPanelIcons/user.png';
 import userDataImg from '@/assets/userPanelIcons/userData.png';
@@ -20,37 +20,36 @@ export default async function UserProfileLayout() {
     <>
       <aside className={classes.aside}>
         <div className={classes.linksBox}>
-            <UserProfileLink href={`/profil/${currentUser.userId}`} imgSrc={userImg} alt={'user icon'} spanContent={'Moje konto'}/>
-            {/* <Link className={classes.link} href={`/profil/${currentUser.userId}`}> 
-                <div className={classes.imgBox}>
-                    <Image src={userImg} alt="user icon" fill/>
-                </div>
-                <span>Moje konto</span> 
-            </Link> */}
-            <Link className={classes.link} href={`/profil/${currentUser.userId}/dane-personalne`}> 
-                <div className={classes.imgBox}>
-                    <Image src={userDataImg} alt="user data icon" fill/>
-                </div>
-                <span>Dane personalne</span>
-            </Link>
-            <Link className={classes.link} href={`/profil/${currentUser.userId}/zamowienia`}>
-                <div className={classes.imgBox}>
-                        <Image src={ordersImg} alt="order icon" fill/>
-                </div>
-                <span>Moje zamówienia</span>
-            </Link>
-            <Link className={classes.link} href={`/profil/${currentUser.userId}/ustawienia-konta`}>
-                <div className={classes.imgBox}>
-                        <Image src={settinsgImg} alt="settings icon" fill/>
-                </div>
-                <span>Ustawienia konta</span>
-            </Link>
-            <Link className={classes.link} href={`/profil/${currentUser.userId}/wirtualne-donuty`}>
-                <div className={classes.imgBox}>
-                        <Image src={currencyImg} alt="currency icon" fill/>
-                </div>
-                <span>Wirtualne donuty</span>
-            </Link>
+            <UserProfileLink 
+                href={`/profil/${currentUser.userId}`} 
+                imgSrc={userImg} 
+                alt={'user icon'} 
+                spanContent={'Moje konto'}
+            />
+            <UserProfileLink 
+                href={`/profil/${currentUser.userId}/dane-personalne`} 
+                imgSrc={userDataImg} 
+                alt={'user data icon'} 
+                spanContent={'Dane personalne'}
+            />
+            <UserProfileLink 
+                href={`/profil/${currentUser.userId}/zamowienia`} 
+                imgSrc={ordersImg} 
+                alt={'order icon'} 
+                spanContent={'Moje zamówienia'}
+            />
+            <UserProfileLink 
+                href={`/profil/${currentUser.userId}/ustawienia-konta`} 
+                imgSrc={settinsgImg} 
+                alt={'settings icon'} 
+                spanContent={'Ustawienia konta'}
+            />
+            <UserProfileLink 
+                href={`/profil/${currentUser.userId}/wirtualne-donuty`} 
+                imgSrc={currencyImg} 
+                alt={'currency icon'} 
+                spanContent={'Wirtualne donuty'}
+            />
             <LogoutButton/>
         </div>
         <div className={classes.codeBox}>

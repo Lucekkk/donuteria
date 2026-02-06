@@ -5,9 +5,33 @@
     align-items: center;
     min-width: 400px;
     width: 20%;
-    height: 70vh;
-    padding: auto;  
-    background-color: red;
+    /* height: 70vh; */
+    padding: auto; 
+    /* border: 2px solid black;  */
+
+    padding: 30px;
+    /* background-color: red; */
+}
+.codeBox{
+    text-align: center;
+    margin: 40px 0;
+    border: 1px solid black;
+    border-radius: 30px;
+    width: 100%;
+    max-width: 300px;
+    padding: 10px 0;
+}
+.codeBox h3{
+        font-size: clamp(1.2rem, .7rem + 1vw, 1rem + .4vw);
+         margin-bottom: 10px;
+}
+
+.codeBox p, .contactBox p{
+        font-size: clamp(.9rem, .6vw + .75rem, 1.25rem);
+}
+.contactBox p{
+    text-align: center;
+    line-height: 1.6;
 }
 
  
