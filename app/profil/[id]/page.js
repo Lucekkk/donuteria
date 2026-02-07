@@ -18,8 +18,8 @@ export default async function UserProfile({ params }) {
 
   const clientData = await getUser(currentUser.userId);
 
-  console.log(clientData);
-  console.log(currentUser);
+  // console.log(clientData);
+  // console.log(currentUser);
 
 
   // This shouldn't happen due to middleware, but as a safety check

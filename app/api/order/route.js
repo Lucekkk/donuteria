@@ -6,7 +6,7 @@ export async function POST(request) {
   try {
     const clientOrder = await request.json();
 
-    console.log(clientOrder);
+    // console.log(clientOrder);
 
     
     await db.query(

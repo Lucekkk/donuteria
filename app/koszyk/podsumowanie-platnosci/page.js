@@ -85,7 +85,7 @@ export default function Summary() {
                   name="name"
                   defaultValue={state.values?.name || ""}
                   placeholder="Imię"
-                  // required
+                  required
                 />
               </div>
 
@@ -96,7 +96,7 @@ export default function Summary() {
                   name="surname"
                   defaultValue={state.values?.surname || ""}
                   placeholder="Nazwisko"
-                  // required
+                  required
                 />
               </div>
 
@@ -107,7 +107,7 @@ export default function Summary() {
                   name="email"
                   defaultValue={state.values?.email || ""}
                   placeholder="Email"
-                  // required
+                  required
                 />
               </div>
 
@@ -118,7 +118,7 @@ export default function Summary() {
                   name="phoneNumber"
                   defaultValue={state.values?.phoneNumber || ""}
                   placeholder="Numer tel."
-                  // required
+                  required
                 />
               </div>
 
@@ -129,7 +129,7 @@ export default function Summary() {
                   name="street"
                   defaultValue={state.values?.street || ""}
                   placeholder="Ulica i numer domu / mieszkania"
-                  // required
+                  required
                 />
               </div>
 
@@ -140,7 +140,7 @@ export default function Summary() {
                   name="town"
                   defaultValue={state.values?.town || ""}
                   placeholder="Miejscowość"
-                  // required
+                  required
                 />
               </div>
 
@@ -153,7 +153,7 @@ export default function Summary() {
                   maxLength="6"
                   inputMode="numeric"
                   defaultValue={state.values?.postalCode || ""}
-                  // required
+                  required
                 />
               </div>
             </div>
@@ -176,7 +176,7 @@ export default function Summary() {
                   onClick={() => {
                     inputHandler("12.99");
                   }}
-                  // required
+                  required
                 />
                 <label htmlFor="DPD">
                   DPD <p>12.99 zł</p>
@@ -193,7 +193,7 @@ export default function Summary() {
                   onClick={() => {
                     inputHandler("19.99");
                   }}
-                  // required
+                  required
                 />
                 <label htmlFor="FedEx">
                   FedEx <p>19.99 zł</p>
@@ -210,7 +210,7 @@ export default function Summary() {
                   onClick={() => {
                     inputHandler("10");
                   }}
-                  // required
+                  required
                 />
                 <label htmlFor="Inpost">
                   Inpost <p>10 zł</p>
@@ -227,7 +227,7 @@ export default function Summary() {
                   onClick={() => {
                     inputHandler("21.99");
                   }}
-                  // required
+                  required
                 />
                 <label htmlFor="DHL">
                   DHL <p>21.99 zł</p>
@@ -246,7 +246,7 @@ export default function Summary() {
                   name="payMethod"
                   defaultChecked={state.values?.payMethod || false}
                   value="Przelew bankowy"
-                  // required
+                  required
                 />
                 <label htmlFor="bankTransfer">Przelew bankowy</label>
               </div>
@@ -258,7 +258,7 @@ export default function Summary() {
                   name="payMethod"
                   defaultChecked={state.values?.payMethod || false}
                   value="card"
-                  // required
+                  required
                 />
                 <label htmlFor="card">Płatność kartą</label>
               </div>
@@ -270,7 +270,7 @@ export default function Summary() {
                   name="payMethod"
                   defaultChecked={state.values?.payMethod || false}
                   value="blik"
-                  // required
+                  required
                 />
                 <label htmlFor="blik">Blik</label>
               </div>
