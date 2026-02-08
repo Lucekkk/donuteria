@@ -132,29 +132,35 @@ export default function UserEditData({
             />
           </div>
 
-          <div>
+          <div className={classes.buttons}>
             <Link href="/profil/3">Anuluj</Link>
             <button>Zapisz</button>
           </div>
-
-          <div className={classes.error}>
-            {state.message === "Nieodpowiednia długość znaków"
-              ? state.message
-              : null}
-          </div>
-          <div className={classes.error}>
-            {state.message === "Wpisz poprawny email" ? state.message : null}
-          </div>
-          <div className={classes.error}>
-            {state.message === "Wpisz poprawny numer telefonu"
-              ? state.message
-              : null}
-          </div>
-          <div className={classes.error}>
-            {state.message === "Wpisz poprawny kod pocztowy"
-              ? state.message
-              : null}
-          </div>
+          <div className={classes.errorBox}>
+            <div className={classes.error}>
+              {state.message === "Uzupełnij dane"
+                ? state.message
+                : null}
+            </div>
+            <div className={classes.error}>
+              {state.message === "Nieodpowiednia długość znaków"
+                ? state.message
+                : null}
+            </div>
+            <div className={classes.error}>
+              {state.message === "Wpisz poprawny email" ? state.message : null}
+            </div>
+            <div className={classes.error}>
+              {state.message === "Wpisz poprawny numer telefonu"
+                ? state.message
+                : null}
+            </div>
+            <div className={classes.error}>
+              {state.message === "Wpisz poprawny kod pocztowy"
+                ? state.message
+                : null}
+            </div>
+           </div>
         </div>
       </form>
     </main>
