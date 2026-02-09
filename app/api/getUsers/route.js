@@ -2,7 +2,8 @@
 import { db } from "@/lib/db";
 
 export async function GET() {
-  const [rows] = await db.query(`SELECT id, login, email, password_hash, rola
+  const [rows] =
+    await db.query(`SELECT id, login, email, password_hash, rola, punkty
                                  FROM uzytkownicy`);
   return Response.json(rows);
 }

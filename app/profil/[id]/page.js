@@ -7,6 +7,7 @@ import classes from "./page.module.css";
 import ProfileAuthRefresh from "@/components/ProfileAuthRefresh";
 import { getUser } from "@/app/api/getUser/route";
 import Link from "next/link";
+import { getOrders } from "@/app/api/getOrders/route";
 
 export default async function UserProfile({ params }) {
   const { id } = await params;
@@ -46,9 +47,10 @@ export default async function UserProfile({ params }) {
   }
 
   const clientData = await getUser(currentUser.userId);
+  const orders = await getOrders(currentUser.userId, true);
 
   // console.log(clientData);
-  // console.log(currentUser);
+  console.log(orders);
   if (
     !clientData[0]?.name ||
     !clientData[0]?.surname ||
@@ -97,6 +99,38 @@ export default async function UserProfile({ params }) {
             </Link>
           </div>
           {completeDataInfo}
+        </div>
+
+        <div className={classes.userOrders}>
+          <h2>Moje zamówienia:</h2>
+          <table className={classes.table}>
+            <thead>
+              <tr>
+                <th>Numer zamówienia</th>
+                <th>Data zamówienia</th>
+                <th>Cena</th>
+                <th>Status</th>
+                <th>Punkty</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orders.map(order => (
+                <tr key={order.id}>
+                  <td>{order.id}</td>
+                  <td>{new Date(order.orderDate).toLocaleDateString("pl-PL")}</td>
+                  <td>{order.price} zł</td>
+                  <td>{order.status}</td>
+                  <td>{order.points}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          <div className={classes.linkContainer}>
+            <Link href={`/profil/${currentUser.userId}/zamowienia`}>
+              Zobacz starsze zamówienia
+            </Link>
+          </div>
         </div>
       </main>
     </>

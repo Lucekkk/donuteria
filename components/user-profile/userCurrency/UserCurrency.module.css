@@ -1,0 +1,24 @@
+.main {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 800px;
+  padding: 15px;
+}
+
+.main h1{
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.preBox, .paragraphBox {
+  /* color: red; */
+   margin-bottom: 30px;
+}
+
+.preBox pre {
+  white-space: pre-wrap;
+  margin: 0;
+}
+.FAQs{
+    margin-bottom: 30px;
+}

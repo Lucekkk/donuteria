@@ -39,7 +39,7 @@ export async function POST(request) {
  
      await db.query(
       `INSERT INTO zamowienia(id, id_klient, id_adres, sposob_platnosci, sposob_dostawy, stan_zamowienia, punkty, data_wystawienia, data_zakonczenia_dostawy_towarów, data_platnosci, calkowita_cena_do_zaplaty, numer_faktury) 
-      VALUES(?, ?, ?, ?, ?, 'wysłane', ?, CURRENT_DATE(), null, CURRENT_DATE(), ?, ?)`,
+      VALUES(?, ?, ?, ?, ?, 'wysłane', ?, NOW(), null, CURRENT_DATE(), ?, ?)`,
       [
         clientOrder.orderID,
         clientOrder.clientID,

@@ -42,6 +42,7 @@ export async function POST(request) {
         userId: foundUser.id,
         email: foundUser.email,
         login: foundUser.login,
+        donutPoints: foundUser.punkty,
       },
       rememberMe,
     );
@@ -56,6 +57,7 @@ export async function POST(request) {
         message: "Zalogowano pomyślnie",
         userId: foundUser.id,
         login: foundUser.login,
+         donutPoints: foundUser.punkty,
       },
       { status: 200 },
     );
