@@ -2,12 +2,10 @@
 import { db } from "@/lib/db";
 
 export async function GET() {
-  const [rows] = await db.query(`SELECT id, login, email, password_hash
+  const [rows] = await db.query(`SELECT id, login, email, password_hash, rola
                                  FROM uzytkownicy`);
   return Response.json(rows);
 }
-
-
 
 export async function getUsers() {
   //  await new Promise (resolve => setTimeout(resolve, 5000));

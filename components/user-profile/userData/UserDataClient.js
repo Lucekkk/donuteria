@@ -58,7 +58,7 @@ export default function UserEditData({
               name="name"
               defaultValue={client.name || state.values?.name || ""}
               placeholder="Imię"
-              // required
+              required
             />
           </div>
 
@@ -69,7 +69,7 @@ export default function UserEditData({
               name="surname"
               defaultValue={client.surname || state.values?.surname || ""}
               placeholder="Nazwisko"
-              // required
+              required
             />
           </div>
 
@@ -80,7 +80,7 @@ export default function UserEditData({
               name="email"
               defaultValue={currentUser?.email || state.values?.email || ""}
               placeholder="Email"
-              // required
+              required
             />
           </div>
 
@@ -93,7 +93,7 @@ export default function UserEditData({
                 client.phoneNumber || state.values?.phoneNumber || ""
               }
               placeholder="Numer tel."
-              // required
+              required
             />
           </div>
 
@@ -104,7 +104,7 @@ export default function UserEditData({
               name="street"
               defaultValue={client.street || state.values?.street || ""}
               placeholder="Ulica i numer domu / mieszkania"
-              // required
+              required
             />
           </div>
 
@@ -115,7 +115,7 @@ export default function UserEditData({
               name="town"
               defaultValue={client.town || state.values?.town || ""}
               placeholder="Miejscowość"
-              // required
+              required
             />
           </div>
 
@@ -128,7 +128,7 @@ export default function UserEditData({
               maxLength="6"
               inputMode="numeric"
               defaultValue={client.postalCode || state.values?.postalCode || ""}
-              // required
+              required
             />
           </div>
 

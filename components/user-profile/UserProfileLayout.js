@@ -13,54 +13,79 @@ import UserProfileLink from "./UserProfileLink";
 
 export default async function UserProfileLayout() {
   const currentUser = await getCurrentUser();
+  const isAdmin = currentUser?.role === "admin";
 
   return (
     <>
       <aside className={classes.aside}>
         <div className={classes.linksBox}>
-          <UserProfileLink
-            href={`/profil/${currentUser.userId}`}
-            imgSrc={userImg}
-            alt={"user icon"}
-            spanContent={"Moje konto"}
-            exact
-          />
-          <UserProfileLink
-            href={`/profil/${currentUser.userId}/dane-personalne`}
-            imgSrc={userDataImg}
-            alt={"user data icon"}
-            spanContent={"Dane personalne"}
-          />
-          <UserProfileLink
-            href={`/profil/${currentUser.userId}/zamowienia`}
-            imgSrc={ordersImg}
-            alt={"order icon"}
-            spanContent={"Moje zamówienia"}
-          />
-          <UserProfileLink
-            href={`/profil/${currentUser.userId}/ustawienia-konta`}
-            imgSrc={settinsgImg}
-            alt={"settings icon"}
-            spanContent={"Ustawienia konta"}
-          />
-          <UserProfileLink
-            href={`/profil/${currentUser.userId}/wirtualne-donuty`}
-            imgSrc={currencyImg}
-            alt={"currency icon"}
-            spanContent={"Wirtualne donuty"}
-          />
-          <LogoutButton />
+          {isAdmin ? (
+            <>
+              <UserProfileLink
+                href={`/profil/${currentUser.userId}`}
+                imgSrc={userImg}
+                alt={"admin panel icon"}
+                spanContent={"Panel administratora"}
+                exact
+              />
+              <LogoutButton />
+            </>
+          ) : (
+            <>
+              <UserProfileLink
+                href={`/profil/${currentUser.userId}`}
+                imgSrc={userImg}
+                alt={"user icon"}
+                spanContent={"Moje konto"}
+                exact
+              />
+              <UserProfileLink
+                href={`/profil/${currentUser.userId}/dane-personalne`}
+                imgSrc={userDataImg}
+                alt={"user data icon"}
+                spanContent={"Dane personalne"}
+              />
+              <UserProfileLink
+                href={`/profil/${currentUser.userId}/zamowienia`}
+                imgSrc={ordersImg}
+                alt={"order icon"}
+                spanContent={"Moje zamówienia"}
+              />
+              <UserProfileLink
+                href={`/profil/${currentUser.userId}/ustawienia-konta`}
+                imgSrc={settinsgImg}
+                alt={"settings icon"}
+                spanContent={"Ustawienia konta"}
+              />
+              <UserProfileLink
+                href={`/profil/${currentUser.userId}/wirtualne-donuty`}
+                imgSrc={currencyImg}
+                alt={"currency icon"}
+                spanContent={"Wirtualne donuty"}
+              />
+              <LogoutButton />
+            </>
+          )}
         </div>
-        <div className={classes.codeBox}>
-          <h3>Twój kod do zbierania wirtualnych donutów</h3>
-          <p>29438</p>
-        </div>
-        <div className={classes.contactBox}>
-          <p>Masz jakies pytania?</p>
-          <p>Zadzwoń lub napisz</p>
-          <p>654 678 765</p>
-          <p>kontakt@slodkidonut.pl</p>
-        </div>
+        {isAdmin ? (
+          <div className={classes.adminBox}>
+            <h3>Panel administratora</h3>
+            <p>Zalogowano jako administrator.</p>
+          </div>
+        ) : (
+          <>
+            <div className={classes.codeBox}>
+              <h3>Twój kod do zbierania wirtualnych donutów</h3>
+              <p>29438</p>
+            </div>
+            <div className={classes.contactBox}>
+              <p>Masz jakies pytania?</p>
+              <p>Zadzwoń lub napisz</p>
+              <p>654 678 765</p>
+              <p>kontakt@slodkidonut.pl</p>
+            </div>
+          </>
+        )}
       </aside>
     </>
   );
