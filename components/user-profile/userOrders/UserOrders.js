@@ -2,38 +2,9 @@
 "use client";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
-
-const faktura = {
-  numer_faktury: "FV/02/2026/123",
-  data_wystawienia: "2026-02-09T13:42:22.000Z",
-  data_platnosci: "2026-02-08T23:00:00.000Z",
-  sposob_platnosci: "Karta",
-  sposob_dostawy: "DPD",
-  calkowita_cena_do_zaplaty: "26.98",
-  punkty: 5,
-  id: 1770644542636,
-
-  sprzedawca: {
-    nazwa: "Sklep Testowy Sp. z o.o.",
-    adres: "ul. Przykładowa 1, 00-001 Warszawa",
-    nip: "5251234567",
-  },
-
-  nabywca: {
-    nazwa: "Jan Kowalski",
-    adres: "ul. Klienta 5, 00-002 Kraków",
-    nip: "6781234567",
-  },
-
-  pozycje: [
-    {
-      nazwa: "Produkt testowy",
-      ilosc: 1,
-      cena_netto: 21.93,
-      vat: 23,
-    },
-  ],
-};
+import classes from "./UserOrders.module.css";
+import Image from "next/image";
+import downloadImg from "@/assets/userPanel/download.png";
 
 const LATIN_EXT_FONT_URL = "/fonts/NotoSans-wdth-wght.ttf";
 const LATIN_EXT_FONT_FILE = "NotoSans-wdth-wght.ttf";
@@ -58,7 +29,7 @@ const loadFontAsBase64 = async (url) => {
 export default function UserOrders({ orders }) {
   //   const faktura = orders[0];
 
-  const generateInvoicePDF = async (faktura) => {
+  const generateInvoicePDF = async (order) => {
     const doc = new jsPDF();
 
     const fontBase64 = await loadFontAsBase64(LATIN_EXT_FONT_URL);
@@ -73,14 +44,10 @@ export default function UserOrders({ orders }) {
     doc.text("FAKTURA VAT", 14, 20);
 
     doc.setFontSize(11);
-    doc.text(`Nr faktury: ${faktura.numer_faktury}`, 14, 30);
-    doc.text(
-      `Data wystawienia: ${formatDate(faktura.data_wystawienia)}`,
-      14,
-      36,
-    );
-    doc.text(`Data sprzedaży: ${formatDate(faktura.data_wystawienia)}`, 14, 42);
-    doc.text(`Termin płatności: ${formatDate(faktura.data_platnosci)}`, 14, 48);
+    doc.text(`Nr faktury: ${order.invoice_number}`, 14, 30);
+    doc.text(`Data wystawienia: ${formatDate(order.order_date)}`, 14, 36);
+    doc.text(`Data sprzedaży: ${formatDate(order.order_date)}`, 14, 42);
+    doc.text(`Termin płatności: ${formatDate(order.payment_date)}`, 14, 48);
 
     // Sprzedawca / Nabywca
     doc.setFontSize(12);
@@ -88,9 +55,9 @@ export default function UserOrders({ orders }) {
     doc.setFontSize(10);
     doc.text(
       [
-        faktura.sprzedawca.nazwa,
-        faktura.sprzedawca.adres,
-        `NIP: ${faktura.sprzedawca.nip}`,
+        order.producer_name,
+        order.producer_address,
+        `NIP: ${order.producer_nip}`,
       ],
       14,
       66,
@@ -101,9 +68,8 @@ export default function UserOrders({ orders }) {
     doc.setFontSize(10);
     doc.text(
       [
-        faktura.nabywca.nazwa,
-        faktura.nabywca.adres,
-        `NIP: ${faktura.nabywca.nip}`,
+        `${order.client_first_name} ${order.client_last_name}`,
+        `${order.client_street}, ${order.client_postal_code} ${order.client_city}`,
       ],
       110,
       66,
@@ -125,18 +91,15 @@ export default function UserOrders({ orders }) {
       ],
       styles: { font: LATIN_EXT_FONT_NAME, fontStyle: "normal" },
       headStyles: { font: LATIN_EXT_FONT_NAME, fontStyle: "normal" },
-      body: faktura.pozycje.map((p, index) => {
-        const vatValue = (p.cena_netto * p.ilosc * p.vat) / 100;
-        const brutto = p.cena_netto * p.ilosc + vatValue;
-
+      body: order.items.map((p, index) => {
         return [
           index + 1,
-          p.nazwa,
-          p.ilosc,
-          `${p.cena_netto.toFixed(2)} zł`,
-          `${p.vat}%`,
-          `${vatValue.toFixed(2)} zł`,
-          `${brutto.toFixed(2)} zł`,
+          p.product_name,
+          p.product_quantity,
+          `${p.product_net_price} zł`,
+          `${p.product_vat_rate}%`,
+          `${p.product_vat_amount} zł`,
+          `${p.product_gross_price} zł`,
         ];
       }),
     });
@@ -145,15 +108,12 @@ export default function UserOrders({ orders }) {
 
     // Podsumowanie
     doc.setFontSize(11);
-    doc.text(`Sposób płatności: ${faktura.sposob_platnosci}`, 14, endY);
-    doc.text(`Sposób dostawy: ${faktura.sposob_dostawy}`, 14, endY + 6);
+    doc.text(`Sposób płatności: ${order.payment_method}`, 14, endY);
+    doc.text(`Sposób dostawy: ${order.delivery_method}`, 14, endY + 6);
+    doc.text(`Koszt dostawy: ${order.delivery_cost} zł`, 14, endY + 12);
 
     doc.setFontSize(14);
-    doc.text(
-      `Do zapłaty: ${faktura.calkowita_cena_do_zaplaty} zł`,
-      14,
-      endY + 20,
-    );
+    doc.text(`Do zapłaty: ${order.total_price} zł`, 14, endY + 20);
 
     // doc.setFontSize(10);
     // doc.text("Kwota słownie: dwadzieścia sześć zł 98/100", 14, endY + 28);
@@ -166,16 +126,51 @@ export default function UserOrders({ orders }) {
       285,
     );
 
-    doc.save(`faktura_${faktura.numer_faktury}.pdf`);
+    doc.save(`faktura_${order.invoice_number}.pdf`);
   };
 
-  console.log(faktura);
+  // console.log(faktura);
 
   return (
-    <main>
-      <button onClick={() => generateInvoicePDF(faktura)}>
-        Pobierz fakturę PDF
-      </button>
+    <main className={classes.main}>
+      <div className={classes.userOrders}>
+        <h2>Moje zamówienia:</h2>
+        <div className={classes.tableWrap}>
+          <table className={classes.table}>
+            <thead>
+              <tr>
+                <th>Numer zamówienia</th>
+                <th>Data zamówienia</th>
+                <th>Cena</th>
+                <th>Status</th>
+                <th>Punkty</th>
+                <th>Pobierz</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orders.map((order) => (
+                <tr key={order.id}>
+                  <td data-label="Numer zamówienia">{order.id}</td>
+                  <td data-label="Data zamówienia">
+                    {new Date(order.order_date).toLocaleDateString("pl-PL")}
+                  </td>
+                  <td data-label="Cena">{order.total_price} zł</td>
+                  <td data-label="Status">{order.status}</td>
+                  <td data-label="Punkty">{order.points}</td>
+                  <td data-label="Pobierz">
+                    <button
+                      className={classes.downloadIcon}
+                      onClick={() => generateInvoicePDF(order)}
+                    >
+                      <Image src={downloadImg} alt="download icon" fill />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </main>
   );
 }

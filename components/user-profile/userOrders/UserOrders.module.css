@@ -7,11 +7,7 @@
   margin-bottom: 150px;
 }
 
-.main h1 {
-  text-align: right;
-}
-
-.userDataBox,
+ 
 .userOrders {
   /* background-color: red; */
   display: flex;
@@ -23,50 +19,29 @@
   box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.214);
 }
 
-.dataContainer {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 5px;
+.userOrders h2 {
+  margin-bottom: 10px;
 }
 
-.linkContainer,
-.dataContainer {
-  font-size: clamp(0.9rem, 0.6vw + 0.75rem, 1.25rem);
-}
-
-.linkContainer {
-  align-self: flex-end;
-  margin-top: 20px;
-}
-.linkContainer a {
-  display: inline-block;
-  padding: 5px 10px;
-  border-radius: 20px;
-  border: 2px solid rgba(0, 0, 0, 0.544);
-  text-decoration: none;
-  color: black;
-  transition: background-color 0.2s ease-in-out;
-}
-.linkContainer a:hover {
-  background-color: rgba(0, 0, 0, 0.225);
-}
-
-.rightText {
-  text-align: right;
-}
 .tableWrap {
   width: 100%;
   overflow-x: auto;
 }
+.downloadIcon{
+    position: relative;
+    width: 35px;
+    height: 35px;
+    margin-bottom: 10px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
 .table {
   text-align: center;
   width: 100%;
   border-collapse: collapse;
   min-width: 520px;
-}
-
-.userOrders h2 {
-  margin-bottom: 10px;
 }
 
 @media (max-width: 512px) {

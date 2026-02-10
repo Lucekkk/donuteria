@@ -8,7 +8,6 @@ export async function POST(request) {
 
     // console.log(clientOrder);
 
-    
     await db.query(
       `INSERT INTO klienci(id, id_uzytkownik, imie, nazwisko, email, telefon, numer_konta, bank) 
       VALUES(?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -24,7 +23,6 @@ export async function POST(request) {
       ],
     );
 
-    
     await db.query(
       `INSERT INTO adresy(id, id_klient, ulica_i_numer_domu_lub_mieszkania, miejscowosc, kod_pocztowy)
       VALUES(?, ?, ?, ?, ?)`,
@@ -36,10 +34,10 @@ export async function POST(request) {
         clientOrder.postalCode,
       ],
     );
- 
-     await db.query(
-      `INSERT INTO zamowienia(id, id_klient, id_adres, sposob_platnosci, sposob_dostawy, stan_zamowienia, punkty, data_wystawienia, data_zakonczenia_dostawy_towarów, data_platnosci, calkowita_cena_do_zaplaty, numer_faktury) 
-      VALUES(?, ?, ?, ?, ?, 'wysłane', ?, NOW(), null, CURRENT_DATE(), ?, ?)`,
+
+    await db.query(
+      `INSERT INTO zamowienia(id, id_klient, id_adres, sposob_platnosci, sposob_dostawy, stan_zamowienia, punkty, data_wystawienia, data_zakonczenia_dostawy_towarów, data_platnosci, calkowita_cena_do_zaplaty, numer_faktury, koszt_dostarczenia) 
+      VALUES(?, ?, ?, ?, ?, 'wysłane', ?, NOW(), null, CURRENT_DATE(), ?, ?, ?)`,
       [
         clientOrder.orderID,
         clientOrder.clientID,
@@ -49,28 +47,32 @@ export async function POST(request) {
         clientOrder.donutsPoints,
         clientOrder.totalPrice,
         clientOrder.invoiceNumber,
+        clientOrder.orderPrice,
       ],
     );
 
-    if(clientOrder.userId){
-      await db.query(`
+    if (clientOrder.userId) {
+      await db.query(
+        `
         UPDATE uzytkownicy SET punkty = punkty + ? WHERE id = ?;
         `,
-        [
-          clientOrder.donutsPoints,
-          clientOrder.userId
-        ]
-      )
+        [clientOrder.donutsPoints, clientOrder.userId],
+      );
     }
 
-    for(let i = 0; i < clientOrder.cart.length; i++ ){
-
-    const [rows] = await db.query(`
+    for (let i = 0; i < clientOrder.cart.length; i++) {
+      const [rows] = await db.query(
+        `
       INSERT INTO produkty_w_zamowieniu(id, id_zamowienia, id_produktu, ilosc) 
       VALUES (?, ?, ?, ?);`,
-      [clientOrder.productsInCartID + i, clientOrder.orderID, clientOrder.cart[i].idProduct, clientOrder.cart[i].quantity],
-    );
-}
+        [
+          clientOrder.productsInCartID + i,
+          clientOrder.orderID,
+          clientOrder.cart[i].idProduct,
+          clientOrder.cart[i].quantity,
+        ],
+      );
+    }
     // const [rows] = await db.query(
     //   `INSERT INTO uzytkownicy(login, email, password_hash, data_utworzenia, rola)
     //    VALUES(?, ?, ?, CURRENT_DATE(), 'user')`,

@@ -103,28 +103,32 @@ export default async function UserProfile({ params }) {
 
         <div className={classes.userOrders}>
           <h2>Moje zamówienia:</h2>
-          <table className={classes.table}>
-            <thead>
-              <tr>
-                <th>Numer zamówienia</th>
-                <th>Data zamówienia</th>
-                <th>Cena</th>
-                <th>Status</th>
-                <th>Punkty</th>
-              </tr>
-            </thead>
-            <tbody>
-              {orders.map(order => (
-                <tr key={order.id}>
-                  <td>{order.id}</td>
-                  <td>{new Date(order.orderDate).toLocaleDateString("pl-PL")}</td>
-                  <td>{order.price} zł</td>
-                  <td>{order.status}</td>
-                  <td>{order.points}</td>
+          <div className={classes.tableWrap}>
+            <table className={classes.table}>
+              <thead>
+                <tr>
+                  <th>Numer zamówienia</th>
+                  <th>Data zamówienia</th>
+                  <th>Cena</th>
+                  <th>Status</th>
+                  <th>Punkty</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {orders.map((order) => (
+                  <tr key={order.id}>
+                    <td data-label="Numer zamówienia">{order.id}</td>
+                    <td data-label="Data zamówienia">
+                      {new Date(order.orderDate).toLocaleDateString("pl-PL")}
+                    </td>
+                    <td data-label="Cena">{order.price} zł</td>
+                    <td data-label="Status">{order.status}</td>
+                    <td data-label="Punkty">{order.points}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
           <div className={classes.linkContainer}>
             <Link href={`/profil/${currentUser.userId}/zamowienia`}>

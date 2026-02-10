@@ -34,10 +34,39 @@ export async function POST(request) {
     }else{
 
          const [rows] = await db.query(`
-            SELECT zamowienia.id, zamowienia.sposob_platnosci, zamowienia.sposob_dostawy, zamowienia.data_wystawienia, zamowienia.calkowita_cena_do_zaplaty, zamowienia.stan_zamowienia, zamowienia.punkty, zamowienia.data_zakonczenia_dostawy_towarów, zamowienia.data_platnosci, zamowienia.numer_faktury
+            SELECT 
+              zamowienia.id, 
+              zamowienia.sposob_platnosci AS payment_method, 
+              zamowienia.sposob_dostawy AS delivery_method, 
+              zamowienia.data_wystawienia AS order_date, 
+              zamowienia.calkowita_cena_do_zaplaty AS total_price, 
+              zamowienia.stan_zamowienia AS status, 
+              zamowienia.punkty AS points, 
+              zamowienia.data_zakonczenia_dostawy_towarów AS delivery_end_date, 
+              zamowienia.data_platnosci AS payment_date, 
+              zamowienia.numer_faktury AS invoice_number,
+              producenci.nazwa AS producer_name,
+              producenci.adres AS producer_address,
+              producenci.NIP AS producer_nip,
+              klienci.imie AS client_first_name,
+              klienci.nazwisko AS client_last_name,
+              adresy.ulica_i_numer_domu_lub_mieszkania AS client_street,
+              adresy.kod_pocztowy AS client_postal_code,
+              adresy.miejscowosc AS client_city,
+              produkty_w_zamowieniu.ilosc AS product_quantity,
+              produkty.cena_netto AS product_net_price,
+              produkty.stawka_vat AS product_vat_rate,
+              produkty.kwota_vat AS product_vat_amount,
+              produkty.cena_brutto AS product_gross_price,
+              produkty.nazwa AS product_name,
+              zamowienia.koszt_dostarczenia AS delivery_cost
             FROM klienci
-            INNER JOIN uzytkownicy ON uzytkownicy.id = klienci.id_uzytkownik
-            INNER JOIN zamowienia ON zamowienia.id_klient = klienci.id
+              INNER JOIN uzytkownicy ON uzytkownicy.id = klienci.id_uzytkownik
+              INNER JOIN zamowienia ON zamowienia.id_klient = klienci.id
+              INNER JOIN produkty_w_zamowieniu ON produkty_w_zamowieniu.id_zamowienia = zamowienia.id
+              INNER JOIN produkty ON produkty.id = produkty_w_zamowieniu.id_produktu
+              INNER JOIN producenci ON produkty.id_producenta = producenci.id
+              INNER JOIN adresy ON adresy.id_klient = klienci.id
             WHERE uzytkownicy.id = ?
             ORDER BY zamowienia.data_wystawienia DESC;
             `,
