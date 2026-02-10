@@ -1,0 +1,75 @@
+.main {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 800px;
+}
+
+.main h1 {
+  text-align: center;
+}
+.main p {
+  font-size: clamp(1.1rem, 0.4vw + 0.75rem, 0.6vw + 1rem);
+  text-align: center;
+  margin: 10px 0;
+}
+.main form {
+  height: 90%;
+  margin-top: 20px;
+}
+.userDataInputsBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100%;
+}
+.inputBox {
+  max-width: 300px;
+}
+.inputBox input {
+  width: 100%;
+  font-size: clamp(1.1rem, 0.6vw + 0.75rem, 0.6vw + 1.25rem);
+  background-color: #0000;
+  border: 2px solid #b8b4b4;
+  border-radius: 35px;
+  outline: none;
+  height: 45px;
+  padding: 5px 5px 5px 15px;
+}
+.error {
+  color: red;
+  font-size: clamp(1.1rem, 0.6vw + 0.75rem, 0.6vw + 1.25rem);
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.buttons a {
+  text-decoration: none;
+  display: inline-block;
+  color: black;
+}
+.buttons button {
+  cursor: pointer;
+}
+.buttons a,
+.buttons button {
+  font-size: clamp(1.1rem, 0.6vw + 0.75rem, 0.6vw + 1.25rem);
+  border: 2px solid #0000008b;
+  border-radius: 20px;
+  padding: 5px 20px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.buttons a:hover,
+.buttons button:hover {
+  background-color: rgba(0, 0, 0, 0.225);
+}
+
+@media (max-width: 1024px) {
+  .inputBox {
+    margin-bottom: 20px;
+  }
+}
