@@ -8,6 +8,10 @@ import ProfileAuthRefresh from "@/components/ProfileAuthRefresh";
 import { getUser } from "@/app/api/getUser/route";
 import Link from "next/link";
 import { getOrders } from "@/app/api/getOrders/route";
+import { getUsers } from "@/app/api/getUsers/route";
+import AdminUsersTable from "@/components/admin/AdminUsersTable";
+import AdminProductsTable from "@/components/admin/AdminProductsTable";
+import { getAllProducts } from "@/app/api/allProducts/route";
 
 export default async function UserProfile({ params }) {
   const { id } = await params;
@@ -27,6 +31,8 @@ export default async function UserProfile({ params }) {
   }
 
   if (currentUser.role === "admin") {
+    const users = await getUsers();
+    const products = await getAllProducts();
     return (
       <>
         <main className={classes.main}>
@@ -41,6 +47,8 @@ export default async function UserProfile({ params }) {
               <p className={classes.rightText}>{currentUser.email}</p>
             </div>
           </div>
+          <AdminUsersTable initialUsers={users} />
+          <AdminProductsTable initialProducts={products} />
         </main>
       </>
     );

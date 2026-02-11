@@ -26,6 +26,16 @@ export async function POST(request) {
       );
     }
 
+    if (foundUser.czyZbanowany === 1) {
+      return NextResponse.json(
+        {
+          error: "Użytkownik zbanowany",
+          reason: foundUser.powod_bana || "Brak podanego powodu",
+        },
+        { status: 403 },
+      );
+    }
+
     // Verify password
     const valid = await argon2.verify(foundUser.password_hash, password);
 
@@ -42,6 +52,7 @@ export async function POST(request) {
         userId: foundUser.id,
         email: foundUser.email,
         login: foundUser.login,
+        role: foundUser.rola,
         donutPoints: foundUser.punkty,
       },
       rememberMe,
@@ -57,7 +68,7 @@ export async function POST(request) {
         message: "Zalogowano pomyślnie",
         userId: foundUser.id,
         login: foundUser.login,
-         donutPoints: foundUser.punkty,
+        donutPoints: foundUser.punkty,
       },
       { status: 200 },
     );

@@ -65,8 +65,152 @@
   min-width: 520px;
 }
 
+.productsTable th:nth-child(4),
+.productsTable td:nth-child(4) {
+  min-width: 260px;
+  text-align: center;
+  white-space: normal;
+  word-break: break-word;
+}
+.productsTable td{
+  padding: 0 10px;
+}
+
 .userOrders h2 {
   margin-bottom: 10px;
+}
+
+.adminPanel {
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.214);
+}
+
+.adminPanelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.adminPanel h2 {
+  margin-bottom: 12px;
+}
+
+.adminActionButtons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.primaryButton,
+.secondaryButton,
+.dangerButton {
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 2px solid rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+}
+
+.primaryButton {
+  background-color: #e8f5ea;
+}
+
+.secondaryButton {
+  background-color: #f3f3f3;
+}
+
+.dangerButton {
+  background-color: #f9dede;
+}
+
+.banButton {
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 2px solid rgba(0, 0, 0, 0.45);
+  background-color: #f9dede;
+  cursor: pointer;
+}
+
+.banButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 20px;
+}
+
+.modalBox {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  width: min(720px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+}
+
+.modalLabel {
+  display: block;
+  margin: 8px 0 4px;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.formInput,
+.formTextarea {
+  width: 100%;
+  border-radius: 12px;
+  border: 2px solid rgba(0, 0, 0, 0.25);
+  padding: 10px;
+}
+
+.formTextarea {
+  resize: vertical;
+}
+
+.banReasonInput {
+  width: 100%;
+  border-radius: 12px;
+  border: 2px solid rgba(0, 0, 0, 0.25);
+  padding: 10px;
+  resize: vertical;
+}
+
+.modalError {
+  color: #c11d1d;
+  margin-top: 8px;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.modalActions button {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 2px solid rgba(0, 0, 0, 0.45);
+  background-color: #f9dede;
+  cursor: pointer;
 }
 
 @media (max-width: 512px) {

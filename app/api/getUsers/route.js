@@ -3,7 +3,8 @@ import { db } from "@/lib/db";
 
 export async function GET() {
   const [rows] =
-    await db.query(`SELECT id, login, email, password_hash, rola, punkty
+    await db.query(`SELECT id, login, email, password_hash, rola, punkty,
+                                 data_utworzenia, czyZbanowany, powod_bana
                                  FROM uzytkownicy`);
   return Response.json(rows);
 }

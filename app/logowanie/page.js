@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { loginUser } from "@/lib/actions";
 import Link from "next/link";
 import classes from "./page.module.css";
@@ -10,6 +10,13 @@ export default function Logowanie() {
     message: null,
     values: {},
   });
+  const [isBanModalOpen, setIsBanModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (state.message === "Zbanowany") {
+      setIsBanModalOpen(true);
+    }
+  }, [state.message]);
 
   console.log(state.message);
   return (
@@ -62,6 +69,9 @@ export default function Logowanie() {
             {state.message === "Uzupełnij dane" && (
               <p className={classes.errorMessage}>{state.message}</p>
             )}
+            {state.message === "Zbanowany" && (
+              <p className={classes.errorMessage}>Konto zablokowane</p>
+            )}
 
             <div className={classes.btnContainer}>
               <button disabled={isPending}>
@@ -85,6 +95,20 @@ export default function Logowanie() {
           </form>
         </div>
       </main>
+
+      {isBanModalOpen && (
+        <div className={classes.banModalBackdrop}>
+          <div className={classes.banModalBox}>
+            <h2>Konto zablokowane</h2>
+            <p>{state.banReason || "Brak podanego powodu"}</p>
+            <div className={classes.banModalActions}>
+              <button type="button" onClick={() => setIsBanModalOpen(false)}>
+                Zamknij
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
