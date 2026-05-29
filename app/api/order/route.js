@@ -4,6 +4,10 @@ import { db } from "@/lib/db";
 
 export async function POST(request) {
   try {
+    // Test stub: when enabled, return success immediately to avoid DB writes
+    if (process.env.ENABLE_TEST_API_STUBS === "1") {
+      return Response.json({ success: true, message: "Stubbed order (test)" });
+    }
     const clientOrder = await request.json();
 
     // console.log(clientOrder);
@@ -93,7 +97,11 @@ export async function POST(request) {
 }
 
 export async function sendNewOrder(order) {
-  // await new Promise (resolve => setTimeout(resolve, 5000));
+  // When testing, short-circuit and return success to make tests deterministic.
+  if (process.env.ENABLE_TEST_API_STUBS === "1") {
+    return { success: true, message: "Stubbed order (test)" };
+  }
+
   const baseUrl =
     process.env.NEXT_PUBLIC_SITE_URL ||
     process.env.SITE_URL ||
